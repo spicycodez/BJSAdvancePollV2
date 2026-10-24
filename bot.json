@@ -1,6 +1,6 @@
 {
   "bb_sync_version": "1.0",
   "name": "AdvancePollBotV2",
-  "csv_url": null
-  "git_remote":"git@github.com:spicycodez/BJSAdvancePollV2.git"
+  "csv_url": null,
+  "git_remote": "git@github.com:spicycodez/BJSAdvancePollV2.git"
 }
