@@ -20,11 +20,8 @@ Built around the **V2 feature set**:
 ```
 BJSAdvancePollV2/
 ├── bot.json                  # Bots.Business Git-sync manifest (bb_sync_version 1.0)
-├── commands/                 # 42 BJS commands (one file per command)
+├── commands/                 # 52 BJS commands (one file per command)
 │   └── *.js                  # Each file starts with a /*CMD ... CMD*/ header
-├── docs/
-│   ├── advance-poll-bot-v2-guide.pdf   # Illustrated 13-page setup guide
-│   └── advance-poll-bot-v2-guide.html  # Editable source of the guide
 └── README.md
 ```
 
@@ -69,7 +66,7 @@ publish → share → vote from the channel post 🎉
 
 ---
 
-## 🧭 Command reference (42 commands)
+## 🧭 Command reference (52 commands)
 
 ### 👤 User-facing
 | Command | Aliases | Purpose |
@@ -84,15 +81,16 @@ publish → share → vote from the channel post 🎉
 | `/setcmds` | | Register the command list with Telegram (run once after setup) |
 
 ### 🧱 Poll builder flow
-| Step | Command | Purpose |
-|------|---------|---------|
-| 1 | `/npTitle` | Poll title |
-| 2 | `/npDesc` | Optional description |
-| 3 | `/npOpt` → `/npOptDone` | Options **cart** — add one option per message, finish when ready |
-| 4 | `/npChannel` | Target posting channel |
-| 5 | `/npSponsor`, `/npSponsor2` | Sponsor channels 1 and 2 (skippable) |
-| ✓ | `/npPreview` | Preview and confirm |
-| ✓ | `/npPublish` | Validate + create the poll record + resolve channels |
+Every builder step uses a **renderer + waiter** pair: the renderer (`need_reply: false`) shows the prompt on the Smart Bubble and arms the waiter (`need_reply: true`), whose BJS runs only after the user's reply. All buttons point to `need_reply: false` commands so every tap executes instantly.
+
+| Step | Renderer | Waiter (input) | Buttons |
+|------|----------|----------------|---------|
+| 1 | `/npTitle` | `/npTitleWait` — poll title | ✖ cancel |
+| 2 | `/npDesc` | `/npDescWait` — optional description | ⏭ skip (`/npDescSkip`) • ✖ cancel |
+| 3 | `/npOpt` | `/npOptWait` — options **cart**, one per message | 🗑 remove last (`/npOptRm`) • ✅ done (`/npOptDone`) • ✖ cancel |
+| 4 | `/npChannel` | `/npChannelWait` — target posting channel | 🛒 back to cart • ✖ cancel |
+| 5 | `/npSponsor`, `/npSponsor2` | `/npSponsorWait`, `/npSponsor2Wait` — sponsor channels 1–2 (skippable) | ⏭ skip (`/npSponsorSkip`, `/npSponsor2Skip`) • 🔙 back • ✖ cancel |
+| ✓ | `/npPreview` | — | 🚀 publish (`/npPublish`) • 📣 channel • 🔒 sponsors • ✖ cancel |
 
 ### 📊 Dashboard & poll control
 | Command | Purpose |
@@ -123,7 +121,7 @@ publish → share → vote from the channel post 🎉
 | `/npPost` → `/npPosted` | Publishes the poll message to the target channel and stores its message id |
 | `/npResolve` → `/npResolveRes` | Resolves target/sponsor channels during publish |
 | `/repostRes` | Registers a re-posted copy of a poll message |
-| `/npFail` | Publish/post failure handler with actionable fix instructions |
+| `/npFail` | Publish/post failure handler with actionable fix instructions (re-arms the builder for Retry) |
 | `/ignoreErr` | Swallows expected Telegram API errors (deleted messages, etc.) |
 | `/noop` | Do-nothing button target |
 | `/setcmdsDone` | Confirmation for `/setcmds` |
@@ -132,7 +130,8 @@ publish → share → vote from the channel post 🎉
 
 ## 🏗 How it works
 
-- **Smart Bubble** — every menu render goes through `/render`: it tries `editMessageText` on the user's stored bubble message id; if the edit fails (message deleted, too old) it falls back to `/renderNew` (delete + fresh send) and re-registers the new id. One message, forever.
+- **Smart Bubble** — every menu render goes through `/render`: it tries `editMessageText` on the user's stored bubble message id; if the edit fails (message deleted, too old) it falls back to `/renderNew` (fresh send) and re-registers the new id. One message, forever.
+- **Renderer/waiter builder** — Bots.Business runs a `need_reply` command's BJS **after** the user's reply, never when the prompt is first sent. So each builder step is a pair: a renderer that paints the prompt instantly, and a waiter that processes the typed answer. Buttons always target instant (`need_reply: false`) commands.
 - **Small-caps typography** — all user-facing text (menus, buttons, notices, channel posts) is stylized in **Unicode small caps** (ʟɪᴋᴇ ᴛʜɪꜱ) for a clean, premium look. Command names, storage keys and routing strings stay plain ASCII so nothing breaks.
 - **Sponsor Gateway** — `/vote` walks each bound sponsor channel via `Api.getChatMember`; non-members get join buttons instead of a counted vote. Each gate step is its own command so long chains never hit BJS step limits.
 - **Join-Left Protection (3 layers)** — ① every poll footer has a *Refresh* button that re-verifies the voter on the spot; ② the hourly watchdog schedules a chunked `/sweepPoll` per live poll (5 voters per pass, yielding between chunks to stay light); ③ removed votes decrement counters and all posted messages are re-rendered instantly.

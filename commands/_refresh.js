@@ -11,7 +11,7 @@ var poll = Bot.getProp("poll_" + pollId);
 if (!poll) {
   try {
     if (request && request.id) {
-      Api.call("answerCallbackQuery", {
+      Api.answerCallbackQuery( {
         callback_query_id: request.id,
         text: "⚠️ ᴘᴏʟʟ ɴᴏᴛ ꜰᴏᴜɴᴅ.",
         show_alert: true,
@@ -39,7 +39,7 @@ if (poll.status === "live" && poll.sponsors.length && poll.votes[tgid] !== undef
 } else {
   try {
     if (request && request.id) {
-      Api.call("answerCallbackQuery", {
+      Api.answerCallbackQuery( {
         callback_query_id: request.id,
         text: "🔄 ʀᴇꜱᴜʟᴛꜱ ᴜᴘᴅᴀᴛᴇᴅ!",
         show_alert: false,

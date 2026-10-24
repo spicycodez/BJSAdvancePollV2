@@ -9,6 +9,17 @@ var err = String(options.error || "ᴜɴᴋɴᴏᴡɴ ᴇʀʀᴏʀ");
 
 if (err.indexOf("message is not modified") >= 0) { return; }
 
+// Re-arm the builder so the Retry button works (publish set step to "publishing")
+var failPoll = bb.pollId ? Bot.getProp("poll_" + bb.pollId) : null;
+var ownerId = (user && user.id) || (failPoll ? failPoll.owner_bbid : null);
+if (ownerId) {
+  var np = Bot.getProp("u" + ownerId + "_np");
+  if (np && np.step === "publishing") {
+    np.step = "preview";
+    Bot.setProp({ name: "u" + ownerId + "_np", value: np, type: "json" });
+  }
+}
+
 var detail = err.slice(0, 160);
 var hint = "ᴍᴏꜱᴛ ᴄᴏᴍᴍᴏɴ ꜰɪxᴇꜱ:\n" +
   "1️⃣ ᴀᴅᴅ ᴍᴇ ᴀꜱ ᴀɴ <b>ᴀᴅᴍɪɴ</b> ᴏꜰ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴡɪᴛʜ <b>ᴘᴏꜱᴛ ᴍᴇꜱꜱᴀɢᴇꜱ</b> ᴘᴇʀᴍɪꜱꜱɪᴏɴ.\n" +

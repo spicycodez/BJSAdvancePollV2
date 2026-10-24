@@ -19,7 +19,7 @@ function esc(s) {
 function pop(text, alert) {
   try {
     if (request && request.id) {
-      Api.call("answerCallbackQuery", {
+      Api.answerCallbackQuery( {
         callback_query_id: request.id,
         text: String(text).slice(0, 190),
         show_alert: !!alert,

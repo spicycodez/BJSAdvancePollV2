@@ -30,7 +30,7 @@ if (!sp || !sp.id) {
   return;
 }
 
-Api.call("getChatMember", {
+Api.getChatMember( {
   chat_id: sp.id,
   user_id: options.tgid,
   on_result: "/voteCheckRes",

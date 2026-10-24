@@ -13,7 +13,12 @@ if (!np || !np.title || !np.options || np.options.length < 2 || !np.channel) {
   return;
 }
 
-var id = new Date().getTime().toString(36);
+// Double-tap protection: one publish at a time
+if (np.step === "publishing") { return; }
+np.step = "publishing";
+Bot.setProp({ name: key, value: np, type: "json" });
+
+var id = new Date().getTime().toString(36) + Math.floor(Math.random() * 1296).toString(36);
 
 var poll = {
   id: id,

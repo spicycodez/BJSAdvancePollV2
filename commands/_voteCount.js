@@ -11,7 +11,7 @@ if (!poll) { return; }
 if (poll.status === "paused") {
   try {
     if (request && request.id) {
-      Api.call("answerCallbackQuery", {
+      Api.answerCallbackQuery( {
         callback_query_id: request.id,
         text: "⏸ ᴠᴏᴛɪɴɢ ɪꜱ ᴘᴀᴜꜱᴇᴅ ʀɪɢʜᴛ ɴᴏᴡ.",
         show_alert: true,
@@ -38,7 +38,7 @@ Bot.runCommand("/pollRender", { pollId: options.pollId });
 
 try {
   if (request && request.id) {
-    Api.call("answerCallbackQuery", {
+    Api.answerCallbackQuery( {
       callback_query_id: request.id,
       text: prev === undefined
         ? "✅ ᴠᴏᴛᴇ ᴄᴏᴜɴᴛᴇᴅ: " + String(poll.options[optIdx]).slice(0, 60)

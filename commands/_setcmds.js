@@ -4,7 +4,7 @@ help: Register the bot's command list in Telegram (run once after setup)
 need_reply: false
 CMD*/
 
-Api.call("setMyCommands", {
+Api.setMyCommands( {
   commands: [
     { command: "start", description: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ" },
     { command: "newpoll", description: "🆕 ᴄʀᴇᴀᴛᴇ ᴀ ɴᴇᴡ ᴘᴏʟʟ" },

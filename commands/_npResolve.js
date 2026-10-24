@@ -21,7 +21,7 @@ if (i === 0) {
   target = "@" + sp.user;
 }
 
-Api.call("getChat", {
+Api.getChat( {
   chat_id: target,
   on_result: "/npResolveRes",
   on_error: "/npFail",

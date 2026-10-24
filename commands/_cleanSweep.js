@@ -16,6 +16,12 @@ for (var i = 0; i < ids.length; i++) {
   if (!poll) { changed = true; continue; } // stale entry
 
   if (poll.status === "live") {
+    // Reset a sweep that died midway so the watchdog can re-arm it
+    if (poll.sweeping && now - (poll.last_sweep || 0) > 30 * 60000) {
+      poll.sweeping = false;
+      Bot.setProp({ name: "poll_" + id, value: poll, type: "json" });
+    }
+
     // Auto-stop polls older than max_age_days
     if (now - poll.created > (CFG.max_age_days || 30) * 86400000) {
       poll.status = "stopped";
@@ -30,6 +36,7 @@ for (var i = 0; i < ids.length; i++) {
         parse_mode: "HTML",
         on_error: "/ignoreErr"
       });
+      kept.push(id); // stay in the index so the 48h auto-clean still fires
       continue;
     }
 
