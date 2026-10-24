@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advance Poll Bot V2 — Setup Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+@page { size: 720px 1020px; margin: 0; }
+:root {
+  --cv-bg: #0a1628; --cv-accent: #4da8da; --cv-text: #e8f0f8; --cv-muted: #7a9bb8; --cv-glow: #2d7ab3;
+  --bg: #f5f8fc; --section: #edf2f9; --card: #e4ecf5; --stripe: #eef3fa;
+  --header: #1a4a7a; --border: #c0d0e2; --accent: #2d7ab3; --text: #142840; --muted: #5a7a96;
+}
+html, body {
+  margin: 0; padding: 0; width: 720px;
+  background: var(--bg); color: var(--text);
+  font-family: 'Inter', 'Noto Sans SC', sans-serif; font-size: 15px;
+}
+@media screen {
+  html { height: auto; display: flex; justify-content: center; background: var(--bg); }
+  body { transform-origin: top center; margin: 0 auto; }
+}
+body { line-break: strict; word-break: normal; overflow-wrap: break-word; }
+p, td, li { line-break: strict; text-align: justify; }
+img, svg { max-width: 100%; height: auto; }
+
+/* ─── COVER (Template 07 Crystal Blue, adapted 720×1020) ─── */
+.cover {
+  width: 720px; height: 1020px; position: relative; box-sizing: border-box;
+  break-after: page;
+  background:
+    radial-gradient(circle 320px at 8% 6%, rgba(45,122,179,0.16), rgba(45,122,179,0) 70%),
+    radial-gradient(circle 340px at 94% 96%, rgba(77,168,218,0.12), rgba(77,168,218,0) 70%),
+    var(--cv-bg);
+  outline: 2px solid var(--cv-bg); outline-offset: -1px;
+}
+.cover-frame { position: absolute; top: 52px; bottom: 52px; left: 40px; right: 40px;
+  border: 2px solid var(--cv-accent); }
+.cv-kicker { position: absolute; left: 82px; top: 120px; font-size: 13px; letter-spacing: 5px;
+  text-transform: uppercase; color: var(--cv-accent); font-weight: 300; }
+.cv-title { position: absolute; left: 82px; top: 196px; font-size: 58px; line-height: 1.12;
+  font-weight: 900; color: var(--cv-text); max-width: 540px;
+  text-shadow: 0 0 26px rgba(77,168,218,0.35); }
+.cv-summary { position: absolute; left: 82px; top: 452px; font-size: 15px; line-height: 1.75;
+  color: var(--cv-muted); max-width: 500px; text-align: left; }
+.cv-org { position: absolute; left: 82px; top: 656px; font-size: 17px; color: var(--cv-text); font-weight: 600; }
+.cv-org span { color: var(--cv-accent); }
+.cv-meta { position: absolute; left: 82px; top: 706px; font-size: 13px; line-height: 2.0; color: #a8c4dc; }
+.cv-meta b { color: var(--cv-text); font-weight: 600; }
+.cv-meta .dot { color: var(--cv-accent); margin-right: 10px; }
+.cv-date { position: absolute; left: 82px; bottom: 100px; font-size: 11px; letter-spacing: 3px;
+  color: var(--cv-muted); text-transform: uppercase; }
+
+/* ─── FLOWING BODY ─── */
+.main-content { padding: 58px 64px 46px 64px; background: var(--bg); }
+.chapter-header { break-after: avoid; break-inside: avoid; margin-top: 28px; }
+.chapter-header.first { margin-top: 0; }
+.section-tag { font-family: 'Liberation Mono', 'DejaVu Sans Mono', monospace; font-size: 11px;
+  letter-spacing: 3px; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.section-title { font-size: 24px; font-weight: 800; color: var(--text); margin: 5px 0 0; line-height: 1.25; }
+.section-title::after { content: ""; display: block; width: 44px; height: 3px; background: var(--accent); margin: 12px 0 16px; }
+.sub-divider { width: 44px; height: 3px; background: var(--accent); margin: 12px 0 16px; }
+.body-text { margin: 0 0 12px; line-height: 1.65; }
+.lead { color: var(--muted); }
+strong { color: var(--header); }
+code, .path { font-family: 'Liberation Mono', 'DejaVu Sans Mono', monospace; font-size: 12.5px;
+  background: var(--card); padding: 1px 6px; border-radius: 4px; color: var(--header); }
+
+.card { background: #ffffff; border: 1px solid var(--border); border-left: 3px solid var(--accent);
+  border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; break-inside: avoid; }
+.card h4 { margin: 0 0 6px; font-size: 14.5px; font-weight: 700; color: var(--header); }
+.card p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
+.feature-grid { display: flex; flex-wrap: wrap; gap: 12px; max-width: 100%; margin-bottom: 4px; }
+.feature { flex: 1 1 44%; min-width: 260px; max-width: 100%; }
+
+.step { display: flex; gap: 14px; margin-bottom: 13px; break-inside: avoid; max-width: 100%; }
+.step-num { width: 30px; height: 30px; border-radius: 50%; background: var(--header); color: #fff;
+  font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 14px; }
+.step-body { flex: 1 1 auto; min-width: 80px; }
+.step-body h4 { margin: 3px 0 4px; font-size: 14.5px; font-weight: 700; color: var(--text); }
+.step-body p { margin: 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
+
+.callout { background: var(--card); border-radius: 8px; padding: 12px 16px; margin: 12px 0;
+  break-inside: avoid; font-size: 13px; line-height: 1.6; color: var(--text); text-align: left; }
+.callout b { color: var(--header); }
+.callout.warn { border-left: 3px solid var(--header); }
+
+table { width: 100%; border-collapse: collapse; font-size: 12.5px; margin: 10px 0 16px; break-inside: avoid; }
+thead { display: table-header-group; }
+tr { break-inside: avoid; }
+th { background: var(--header); color: #ffffff; text-align: left; padding: 8px 10px;
+  font-size: 12px; font-weight: 600; }
+td { border: 1px solid var(--border); padding: 7px 10px; vertical-align: top; line-height: 1.5; }
+tbody tr:nth-child(odd) { background: var(--stripe); }
+tbody tr:nth-child(even) { background: #ffffff; }
+
+.tree { background: var(--text); color: #cfe3f5; font-family: 'Liberation Mono', 'DejaVu Sans Mono', monospace;
+  padding: 14px 18px; border-radius: 8px; font-size: 12px; line-height: 1.55; break-inside: avoid;
+  white-space: pre; margin: 10px 0 16px; }
+
+.bubble-mock { background: #ffffff; border: 1px solid var(--border); border-radius: 14px;
+  padding: 16px 18px; margin: 12px 0 16px; break-inside: avoid; max-width: 100%; }
+.bubble-mock .bm-title { font-weight: 800; font-size: 14.5px; color: var(--text); }
+.bubble-mock .bm-desc { font-size: 12px; color: var(--muted); font-style: italic; margin-top: 2px; }
+.bm-row { display: flex; align-items: center; gap: 8px; margin-top: 9px; max-width: 100%; }
+.bm-bar { height: 10px; border-radius: 3px; background: var(--accent); flex: 0 0 auto; }
+.bm-track { flex: 1 1 auto; min-width: 60px; height: 10px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent) var(--w, 0%), var(--stripe) var(--w, 0%)); }
+.bm-label { font-size: 12.5px; color: var(--text); font-weight: 600; white-space: nowrap; }
+.bm-count { font-size: 12px; color: var(--muted); white-space: nowrap; }
+.bm-foot { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border);
+  font-size: 11.5px; color: var(--muted); display: flex; flex-wrap: wrap; gap: 10px; }
+.bm-btn { display: inline-block; background: var(--section); border: 1px solid var(--border);
+  border-radius: 6px; padding: 3px 10px; font-size: 11.5px; color: var(--header); font-weight: 600; }
+
+/* ─── ENDING ─── */
+.ending { width: 720px; height: 1020px; position: relative; box-sizing: border-box;
+  break-before: page;
+  background:
+    radial-gradient(circle 320px at 8% 6%, rgba(45,122,179,0.16), rgba(45,122,179,0) 70%),
+    radial-gradient(circle 340px at 94% 96%, rgba(77,168,218,0.12), rgba(77,168,218,0) 70%),
+    var(--cv-bg);
+  outline: 2px solid var(--cv-bg); outline-offset: -1px; }
+.end-frame { position: absolute; top: 52px; bottom: 52px; left: 40px; right: 40px;
+  border: 2px solid var(--cv-accent); }
+.end-big { position: absolute; left: 82px; top: 300px; font-size: 44px; font-weight: 900;
+  color: var(--cv-text); line-height: 1.2; max-width: 520px; }
+.end-sub { position: absolute; left: 82px; top: 470px; font-size: 14px; line-height: 1.8;
+  color: var(--cv-muted); max-width: 500px; }
+.end-res { position: absolute; left: 82px; top: 620px; font-size: 13px; line-height: 2.1; color: #a8c4dc; }
+.end-res b { color: var(--cv-text); font-weight: 600; }
+.end-res .dot { color: var(--cv-accent); margin-right: 10px; }
+.end-date { position: absolute; left: 82px; bottom: 100px; font-size: 11px; letter-spacing: 3px;
+  color: var(--cv-muted); text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════ COVER ═══════════ -->
+<div class="cover">
+  <div class="cover-frame"></div>
+  <div class="cv-kicker">Bots.Business · BJS Command Pack</div>
+  <div class="cv-title">Advance Poll<br>Bot V2</div>
+  <div class="cv-summary">
+    The complete, production-ready rebuild of your Telegram poll experience — a single
+    self-updating Smart Bubble, a multi-channel sponsor gateway, automatic join-left
+    protection, a cart-style step-by-step builder and a full history dashboard.
+    This guide walks you from zero to your first live poll in about ten minutes.
+  </div>
+  <div class="cv-org">Setup Guide <span>·</span> Operations Manual <span>·</span> Troubleshooting</div>
+  <div class="cv-meta">
+    <div><span class="dot">✦</span><b>Zero-Spam Smart Bubble</b> — one message, every menu</div>
+    <div><span class="dot">✦</span><b>Sponsor Gateway</b> — up to 2 channels before a vote counts</div>
+    <div><span class="dot">✦</span><b>Join-Left Protection</b> — leavers' votes removed automatically</div>
+    <div><span class="dot">✦</span><b>History Dashboard</b> — pause · resume · stop · hide votes</div>
+    <div><span class="dot">✦</span><b>Auto-Cleaning Database</b> — self-maintaining storage</div>
+  </div>
+  <div class="cv-date">October 2026 · Version 2.0 · Built for bots.business</div>
+</div>
+
+<!-- ═══════════ FLOWING CONTENT ═══════════ -->
+<div class="main-content">
+
+  <!-- Chapter 1 -->
+  <div class="chapter-header first">
+    <div class="section-tag">Chapter 01</div>
+    <div class="section-title">Welcome to V2 🚀</div>
+    </div>
+  <p class="body-text lead">
+    Advance Poll Bot V2 is a complete rebuild of the classic poll bot, designed to feel like
+    a real app inside Telegram. Instead of flooding the chat with messages, the bot runs on a
+    <strong>single dynamic “Smart Bubble”</strong> that updates itself in place as you navigate
+    menus, the builder and the dashboard. Polls are posted to your channel as one clean message
+    with inline vote buttons, live result bars and a refresh control.
+  </p>
+  <p class="body-text">
+    This package contains the entire bot as a <strong>Bots.Business BJS command pack</strong> —
+    42 ready-to-import commands covering navigation, the poll builder, the voting engine, the
+    sponsor gateway, re-verification sweeps, the dashboard and the auto-clean watchdog. You do
+    not need to write any code: import the pack, connect your bot, add it as an admin in your
+    channels and you are live. Every behaviour described in this guide is already implemented
+    and was verified end-to-end with an automated 37-check test suite before delivery.
+  </p>
+  <div class="feature-grid">
+    <div class="card feature"><h4>🧹 Zero-Spam Smart UI</h4><p>All bot menus live inside one
+      self-updating message in your private chat. Navigating back and forth never creates new
+      messages — the same bubble simply re-renders, exactly like an app screen.</p></div>
+    <div class="card feature"><h4>💬 Multi-Channel Sponsor Gateway</h4><p>Attach up to 2 sponsor
+      channels to any poll. Users must join them before their vote is counted — cross-promotion
+      that actually converts, built into the voting flow itself.</p></div>
+    <div class="card feature"><h4>👮 Join-Left Protection</h4><p>Every vote is re-verified when
+      the voter interacts with the poll and again in scheduled background sweeps. If a voter
+      leaves a sponsor channel, the bot silently removes the vote and updates the message.</p></div>
+    <div class="card feature"><h4>🎧 Step-by-Step Poll Builder</h4><p>Type your title, then your
+      options one by one into a cart-style list — no cryptic symbols or formats. Skip buttons,
+      remove-last and automatic limits keep the flow friendly on any device.</p></div>
+    <div class="card feature"><h4>✈ Advanced History Dashboard</h4><p>Pause, resume, stop, hide
+      vote counts, re-verify all votes, re-post or delete — every action is one tap in the
+      inline panel, and changes apply instantly across every channel.</p></div>
+    <div class="card feature"><h4>🧹 Auto-Cleaning Database</h4><p>An hourly watchdog stops
+      over-age polls, re-verifies live ones and deletes stopped polls 48 hours after they end,
+      keeping your storage tidy and your dashboard fast without any manual work.</p></div>
+  </div>
+
+  <!-- Chapter 2 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 02</div>
+    <div class="section-title">What's in the Package</div>
+    </div>
+  <p class="body-text">
+    The deliverable is a <strong>Git-importable Bots.Business repository</strong>. The folder
+    follows the exact repository format documented at <code>help.bots.business</code>, so the
+    web app can clone it directly. Inside, <code>bot.json</code> is the manifest the importer
+    requires, and the <code>commands/</code> folder holds one file per command — each file is
+    plain, human-readable BJS with a <code>/*CMD … CMD*/</code> header, which also makes it
+    perfect for manual copy-paste if you prefer that route.
+  </p>
+  <div class="tree">advance-poll-bot-v2/
+├── bot.json                  ← repo manifest (bb_sync_version 1.0)
+└── commands/                 ← 42 BJS command files
+    ├── _start.js             ← Smart Bubble main menu
+    ├── _np*.js               ← step-by-step poll builder (10 cmds)
+    ├── _vote*.js  _refresh.js← voting engine + gateway (6 cmds)
+    ├── _pollAdmin.js  _myPolls.js  _pollAction.js
+    │                         ← history dashboard (3 cmds)
+    ├── _sweepPoll.js  _sweepNext.js  _cleanSweep.js
+    │   _doCleanup.js         ← protection + auto-clean (4 cmds)
+    └── _render*.js  …        ← Smart Bubble renderer &amp; helpers</div>
+  <p class="body-text">
+    You receive this folder unpacked <strong>and</strong> zipped
+    (<code>advance-poll-bot-v2.zip</code>), plus this guide. The zip is what you upload to
+    GitHub or extract locally; the unpacked folder is convenient for browsing and for the
+    manual paste route. A companion file <code>advance-poll-bot-v2-guide.html</code> is the
+    editable source of this very document.
+  </p>
+  <table>
+    <thead><tr><th style="width:34%">Command group</th><th style="width:40%">Key commands</th><th>What it powers</th></tr></thead>
+    <tbody>
+      <tr><td>Navigation</td><td><code>/start</code>, <code>/help</code>, <code>/about</code></td>
+          <td>Smart Bubble menu, help, about pages</td></tr>
+      <tr><td>Poll builder</td><td><code>/newpoll</code>, <code>/npTitle</code> … <code>/npPublish</code></td>
+          <td>Cart-style step-by-step creation flow</td></tr>
+      <tr><td>Voting engine</td><td><code>/vote</code>, <code>/refresh</code>, <code>/pollRender</code></td>
+          <td>Gateway checks, counting, live result updates</td></tr>
+      <tr><td>Dashboard</td><td><code>/mypolls</code>, <code>/pollAdmin</code>, <code>/pollAction</code></td>
+          <td>History list and per-poll controls</td></tr>
+      <tr><td>Protection</td><td><code>/sweepPoll</code>, <code>/sweepNext</code>, <code>/voteCheck</code></td>
+          <td>Membership re-verification sweeps</td></tr>
+      <tr><td>Maintenance</td><td><code>/cleanSweep</code>, <code>/doCleanup</code>, <code>/setcmds</code></td>
+          <td>Watchdog, data cleanup, command list</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Chapter 3 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 03</div>
+    <div class="section-title">Before You Begin — Requirements</div>
+    </div>
+  <p class="body-text">
+    You need three things, and none of them cost anything. Take two minutes to prepare them
+    now and the rest of the setup becomes a smooth, uninterrupted run. The free
+    Bots.Business plan (10 million iterations per month) is more than enough for this bot —
+    a full vote with a two-channel gateway costs only a handful of iterations.
+  </p>
+  <div class="card"><h4>1 · A Bots.Business account 🏢</h4><p>Sign in at
+    <code>bots.business</code> with the web app (or install the Android app). Create a new bot
+    in the app — you can leave it empty; the import will fill it with all 42 commands. The web
+    app is strongly recommended for the Git import route because its import dialog is the
+    easiest to use.</p></div>
+  <div class="card"><h4>2 · A Telegram bot token 🤖</h4><p>In Telegram, open
+    <code>@BotFather</code>, send <code>/newbot</code> and follow the two prompts (display name
+    and username). BotFather replies with a token like <code>123456:AA…</code>. Paste that
+    token into your Bots.Business bot's settings so the platform can drive it. Keep the token
+    private — anyone holding it controls your bot.</p></div>
+  <div class="card"><h4>3 · Channels with the right admin rights 📣</h4><p>The bot must be an
+    <strong>admin</strong> of your <strong>posting channel</strong> with the <em>Post
+    Messages</em> permission — that is how it publishes poll messages. For every
+    <strong>sponsor channel</strong> you attach, add the bot as admin too (no posting rights
+    needed) because membership checks via <code>getChatMember</code> only work for bots that
+    are inside the channel. Sponsor channels must be public (<code>@username</code>) so the
+    gateway can generate join buttons.</p></div>
+  <div class="callout warn">⚠️ <b>Why admin rights matter:</b> the gateway is only as reliable
+    as its source of truth. If the bot is not an admin in a sponsor channel, Telegram refuses
+    membership lookups and votes would either be blocked or unverifiable — so the bot asks for
+    admin <em>before</em> letting the flow start.</div>
+
+  <!-- Chapter 4 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 04</div>
+    <div class="section-title">Installation — Two Routes</div>
+    </div>
+  <p class="body-text">
+    Pick <strong>Route A (Git import)</strong> if you can spare five minutes on GitHub — it
+    installs all 42 commands in one shot. Pick <strong>Route B (manual paste)</strong> if you
+    prefer to stay inside the Bots.Business app. Both routes produce the identical bot; you can
+    even start with B and switch to A later. Either way, run the import on the bot you created
+    in Chapter 3.
+  </p>
+
+  <div class="section-tag">Route A</div>
+  <div class="section-title" style="font-size:18px; margin-top:2px;">Git Import (recommended)</div>
+  <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Create an empty GitHub repository</h4>
+    <p>On <code>github.com</code> click <b>New repository</b>, name it
+    <code>advance-poll-bot-v2</code>, keep it <b>Public</b> and do not add a README. Public read
+    access is all the importer needs — never put your bot token in the repo.</p></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Upload the two items</h4>
+    <p>Use GitHub's <b>uploading an existing file</b> or <b>Add file → Upload files</b> to add
+    <code>bot.json</code> and the whole <code>commands/</code> folder from the unzipped package,
+    preserving the folder structure, then commit. The final layout must match the tree in
+    Chapter 2 exactly.</p></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Open Git import in Bots.Business</h4>
+    <p>In the web app, open your bot's command list and locate the <b>Git</b> / <b>Import from
+    Git</b> option (also described at <code>help.bots.business → Import and export a bot with
+    Git</code>). Paste your repository URL, keep the default branch
+    (<code>main</code> or <code>master</code>) and start the import.</p></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Confirm the result</h4>
+    <p>The importer validates <code>bb_sync_version</code>, replaces the bot's commands with the
+    repository's 42 files and reports success. Open the command list and verify you see
+    <code>/start</code>, <code>/npMenu</code>, <code>/cleanSweep</code> and friends.</p></div></div>
+  <div class="callout warn">⚠️ <b>Important:</b> a Git import <b>replaces all existing commands
+    and installed libraries</b> of the destination bot. Run it on a fresh, empty bot — or export
+    a backup of the current bot first, exactly as the official documentation advises.</div>
+
+  <div class="section-tag">Route B</div>
+  <div class="section-title" style="font-size:18px; margin-top:2px;">Manual Paste</div>
+  <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Create the commands</h4>
+    <p>In the app's BJS editor, add a new command for each file. Set the command name from the
+    <code>command:</code> header (e.g. <code>/start</code>) and turn on <b>Wait for answer /
+    need_reply</b> for the six builder commands listed in its header
+    (<code>/npTitle</code>, <code>/npDesc</code>, <code>/npOpt</code>, <code>/npChannel</code>,
+    <code>/npSponsor</code>, <code>/npSponsor2</code>).</p></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Paste the code bodies</h4>
+    <p>Copy everything below the <code>CMD*/</code> line of each file into the command's BJS
+    body and save. Aliases go into the alias field: <code>/start</code> also answers
+    <code>/menu</code>, <code>/npMenu</code> also answers <code>/newpoll</code>,
+    <code>/myPolls</code> also answers <code>/mypolls</code>, <code>/helpPage</code> also
+    answers <code>/help</code>.</p></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Double-check the six flags</h4>
+    <p>The need_reply flags are what make the typed-input builder work. If a later step ever
+    “doesn't listen”, revisit that command's settings — 99% of the time the flag is simply
+    off.</p></div></div>
+
+  <!-- Chapter 5 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 05</div>
+    <div class="section-title">First Run ✅</div>
+    </div>
+  <p class="body-text">
+    With commands installed and the token connected, testing takes under a minute. Open your
+    bot in Telegram and send <code>/start</code>. You should immediately see the dark-themed
+    welcome bubble with four buttons: <b>🆕 Create Poll</b>, <b>📊 My Polls</b>,
+    <b>❓ Help</b> and <b>ℹ️ About</b>. Tap through them — notice that every tap re-renders the
+    <em>same</em> message instead of sending new ones. That is the Smart Bubble working.
+  </p>
+  <p class="body-text">
+    Then send <code>/setcmds</code> once. This registers <code>/start</code>,
+    <code>/newpoll</code>, <code>/mypolls</code> and <code>/help</code> in Telegram's official
+    command menu (the “☰” button in the chat), so your users get a native command list too.
+    The first <code>/start</code> also silently boots the <strong>watchdog</strong> — the
+    hourly background chain that powers auto re-verification and auto-cleaning — so there is
+    nothing else to configure.
+  </p>
+  <div class="callout">✅ <b>Launch checklist:</b> bubble renders with 4 buttons · Help page
+    opens in the same bubble · <code>/setcmds</code> confirms · bot is admin in your target
+    channel · bot is admin in each sponsor channel you plan to use.</div>
+
+  <!-- Chapter 6 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 06</div>
+    <div class="section-title">Creating Your First Poll</div>
+    </div>
+  <p class="body-text">
+    Tap <b>🆕 Create Poll</b> (or send <code>/newpoll</code>). The builder walks you through
+    five short steps, and you can tap <b>✖ Cancel</b> at any moment — the command
+    <code>/npc</code> also resets the builder from anywhere. If you close Telegram halfway
+    through, the bot remembers your progress and offers <b>▶️ Resume Builder</b> on the next
+    <code>/start</code>.
+  </p>
+  <div class="step"><div class="step-num">1</div><div class="step-body"><h4>Title</h4>
+    <p>Just type it as a normal message — 3 to 100 characters. No prefixes, no symbols.</p></div></div>
+  <div class="step"><div class="step-num">2</div><div class="step-body"><h4>Description (optional)</h4>
+    <p>A one-line subtitle shown under the title. Tap <b>⏭ Skip</b> if you don't need one.</p></div></div>
+  <div class="step"><div class="step-num">3</div><div class="step-body"><h4>Options — the cart 🛒</h4>
+    <p>Send each option as its own message (1–32 characters). Every send instantly appears
+    numbered in the cart, with <b>🗑 Remove last</b> and <b>✅ Done</b> buttons below. Two
+    options minimum, ten maximum — at ten the bot continues automatically.</p></div></div>
+  <div class="step"><div class="step-num">4</div><div class="step-body"><h4>Posting channel 📣</h4>
+    <p>Send <code>@yourchannel</code> or a private channel ID (<code>-100…</code>). The bot
+    resolves it live, so typos are caught here rather than at publish time.</p></div></div>
+  <div class="step"><div class="step-num">5</div><div class="step-body"><h4>Sponsors 🔒 &amp; preview</h4>
+    <p>Attach up to two public sponsor channels (<code>@name</code>), or skip. The
+    <b>👀 Preview</b> screen shows the exact poll message — tap <b>🚀 Publish</b> when you're
+    happy. The bot resolves every channel, posts to your channel and opens the dashboard.</p></div></div>
+  <p class="body-text">
+    The published poll message looks like this — buttons are attached directly to the message,
+    and the bars re-render on every vote:
+  </p>
+  <div class="bubble-mock">
+    <div class="bm-title">📊 Best Pizza in Town</div>
+    <div class="bm-desc">Weekly community choice — vote for your favourite slice!</div>
+    <div class="bm-row"><span class="bm-label">1. Margherita</span>
+      <span class="bm-track" style="--w:62%;"></span><span class="bm-count">8 (62%)</span></div>
+    <div class="bm-row"><span class="bm-label">2. Pepperoni</span>
+      <span class="bm-track" style="--w:38%;"></span><span class="bm-count">5 (38%)</span></div>
+    <div class="bm-foot"><span>👥 Total votes: 13 • 🟢 LIVE</span>
+      <span class="bm-btn">🗳 Margherita</span><span class="bm-btn">🗳 Pepperoni</span>
+      <span class="bm-btn">🔄 Refresh</span></div>
+  </div>
+
+  <!-- Chapter 7 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 07</div>
+    <div class="section-title">Sponsor Gateway &amp; Join-Left Protection 🔒</div>
+    </div>
+  <p class="body-text">
+    When a poll has sponsor channels, voting becomes a two-phase flow. On the first tap the bot
+    pauses and verifies the voter against <em>every</em> sponsor channel using Telegram's
+    <code>getChatMember</code>. Members pass straight through — their vote is counted and the
+    result bars update everywhere within a second. Non-members get an instant pop-up plus a
+    private DM listing each sponsor channel as a <b>📢 Join</b> button with a big
+    <b>✅ I Joined — Check Again</b> button underneath; tapping it re-runs the same gate and,
+    once they really joined, counts their original choice.
+  </p>
+  <p class="body-text">
+    Protection continues after the vote. Three layers keep the tally honest: an
+    <strong>interaction re-check</strong> (any voter tapping 🔄 Refresh who has since left a
+    sponsor channel loses the vote immediately), a <strong>scheduled sweep</strong> (the
+    watchdog re-verifies every live poll's voters hourly by default, five voters at a time to
+    stay light on resources), and a <strong>manual re-verify</strong> (the 🛡 button in the
+    dashboard sweeps on demand). Removed votes decrement the visible totals, increment the
+    🛡 removed counter and, when a sweep removes anything, the owner receives a private report
+    DM.
+  </p>
+  <div class="callout">💡 <b>Good to know:</b> gateway DMs can only reach users who have pressed
+    START on your bot at least once — Telegram's rule for all bots. Ask voters to start the bot
+    (the poll's pop-up tells them too); users who never started still see the pop-up but get no
+    DM. The bot never removes a vote when Telegram answers with an API error — only a definite
+    <i>left</i> or <i>kicked</i> status counts, so temporary outages can't punish honest voters.</div>
+
+  <!-- Chapter 8 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 08</div>
+    <div class="section-title">Managing Polls — the Dashboard 📊</div>
+    </div>
+  <p class="body-text">
+    Everything lives behind <b>📊 My Polls</b> (<code>/mypolls</code>), paginated five per page
+    with a live status icon and vote count per poll. Tapping a poll opens its control panel;
+    every action below updates <em>all posted copies</em> of the poll message immediately, so
+    your channel never shows stale state.
+  </p>
+  <table>
+    <thead><tr><th style="width:26%">Action</th><th>What happens</th></tr></thead>
+    <tbody>
+      <tr><td>⏸ Pause / ▶️ Resume</td><td>Voting buttons stop accepting taps with a “paused”
+        pop-up; the banner on the message flips. Resuming re-queues verification soon after.</td></tr>
+      <tr><td>🙈 Hide / 👁 Show votes</td><td>All counts and percentages become <code>•••</code>
+        on every copy of the message — one tap, all channels — and back again.</td></tr>
+      <tr><td>⏹ Stop</td><td>Ends the poll permanently: vote buttons disappear, an ENDED banner
+        is applied, sweeps stop, and the data self-deletes 48 hours later.</td></tr>
+      <tr><td>📈 Stats</td><td>Per-option counts and percentages, 🏆 leader marker after the
+        poll ends, unique voters, removed-vote counter, last sweep time.</td></tr>
+      <tr><td>🛡 Re-verify</td><td>Starts an immediate full membership sweep of all voters
+        (chunked in fives); you get a DM report with the removal count.</td></tr>
+      <tr><td>📢 Re-post</td><td>Posts a fresh copy of the poll message to the channel — handy
+        if the original was deleted or pushed down by chat activity.</td></tr>
+      <tr><td>🗑 Delete</td><td>Removes the poll and <em>all</em> its data everywhere, instantly
+        and unrecoverably.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Chapter 9 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 09</div>
+    <div class="section-title">Configuration &amp; Data ⚙️</div>
+    </div>
+  <p class="body-text">
+    All tunables live in one bot property named <code>cfg</code>, created with safe defaults on
+    first start. Edit it in the app under <b>Bot → Properties</b> (it is stored as JSON) — or
+    simply leave it alone; every value has a sensible fallback baked in. After any change, send
+    <code>/start</code> once so running components pick up the new values.
+  </p>
+  <table>
+    <thead><tr><th style="width:30%">Property</th><th style="width:16%">Default</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td><code>max_options</code></td><td>10</td><td>Maximum options per poll (2–10 enforced in the builder).</td></tr>
+      <tr><td><code>sweep_interval_min</code></td><td>60</td><td>Minutes between automatic re-verification sweeps of each live poll.</td></tr>
+      <tr><td><code>sweep_chunk</code></td><td>5</td><td>Voters verified per sweep batch before a short yield — keeps iteration usage flat.</td></tr>
+      <tr><td><code>stop_clean_hours</code></td><td>48</td><td>Hours a stopped poll's data is kept before auto-deletion.</td></tr>
+      <tr><td><code>max_age_days</code></td><td>30</td><td>Maximum lifetime of a live poll before the watchdog stops it automatically.</td></tr>
+    </tbody>
+  </table>
+  <p class="body-text">
+    Data is stored in plainly-named properties so you can always audit it in the same
+    Properties screen: <code>poll_&lt;id&gt;</code> holds each poll's full record (options,
+    sponsors, status, votes, posted message ids), <code>polls_index</code> lists poll ids for
+    the watchdog, and <code>u&lt;userid&gt;_np</code> / <code>u&lt;userid&gt;_mypolls</code>
+    keep per-user builder state and dashboard entries. Deleting a property by hand is always
+    safe — the bot treats missing data gracefully.
+  </p>
+
+  <!-- Chapter 10 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 10</div>
+    <div class="section-title">Troubleshooting 🔧</div>
+    </div>
+  <p class="body-text">
+    Almost every issue traced by beta testers came down to one of the rows below. Work top to
+    bottom: check the bot's error log in the app (Bot → Errors) alongside these fixes, since
+    failed API calls are stored with a short diagnostic there. If something truly odd happens,
+    <code>/start</code> is always a safe reset — it never destroys poll data.
+  </p>
+  <table>
+    <thead><tr><th style="width:30%">Symptom</th><th style="width:30%">Likely cause</th><th>Fix</th></tr></thead>
+    <tbody>
+      <tr><td>Bot doesn't reply to <code>/start</code></td><td>Token missing/invalid, or import
+        landed on a different bot</td><td>Re-paste the BotFather token in the app; confirm the
+        command list actually contains <code>/start</code>.</td></tr>
+      <tr><td>“Couldn't publish the poll”</td><td>Bot lacks <i>Post Messages</i> admin right, or
+        the channel handle is wrong</td><td>Add the bot as admin to the posting channel, check
+        the handle, then tap 🚀 Retry — the draft is kept.</td></tr>
+      <tr><td>Every vote answers “verification unavailable”</td><td>Bot is not an admin in a
+        sponsor channel</td><td>Add it as admin there; the gateway refuses to guess when
+        Telegram won't disclose membership.</td></tr>
+      <tr><td>Voter says no DM arrived</td><td>User never pressed START on the bot</td><td>Ask
+        them to open the bot once and press START, then tap the check button again.</td></tr>
+      <tr><td>Poll message doesn't update</td><td>The message was deleted, or the bot lost
+        posting rights</td><td>Use 📢 Re-post from the dashboard to publish a fresh copy;
+        verify admin rights if it fails again.</td></tr>
+      <tr><td>Builder ignores typed text</td><td>need_reply flag off (manual paste route)</td>
+        <td>Open the six builder commands and enable <i>Wait for answer</i>; see Route B.</td></tr>
+      <tr><td>Dashboard list is empty</td><td>You're a different BBS user than the owner, or
+        polls were deleted</td><td>Dashboards are per-account; publish from the same account,
+        or check the Properties screen for <code>poll_</code> records.</td></tr>
+      <tr><td>Nothing updates for hours</td><td>Watchdog chain interrupted (bot paused, plan
+        quota, long downtime)</td><td>Send <code>/start</code> — it re-boots the watchdog;
+        missed sweeps simply run at the next tick.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- Chapter 11 -->
+  <div class="chapter-header">
+    <div class="section-tag">Chapter 11</div>
+    <div class="section-title">Limits &amp; Good Practices</div>
+    </div>
+  <p class="body-text">
+    The bot is engineered for the realities of the Bots.Business platform. Votes are stored as
+    a compact map inside each poll's property, which comfortably serves polls up to roughly two
+    thousand voters; beyond that, per-option totals still render but each render pass costs
+    more iterations, so for mega-polls prefer shorter sweep intervals off and rely on the
+    interaction re-check. The chunked sweep design (five voters per batch with short yields)
+    keeps even fully-loaded polls gentle on your 10-million monthly iteration budget — a quiet
+    day of gateway traffic costs a few thousand iterations at most.
+  </p>
+  <p class="body-text">
+    A few practices make the experience better for everyone. Keep option texts short (they
+    become button labels) and titles punchy. Use public channels for sponsors so the gateway
+    can build one-tap join buttons. Tell voters to start the bot before voting day. And when a
+    poll's purpose is served, stop it rather than letting it run to the 30-day cap — stopped
+    polls stay visible in your dashboard for 48 hours with full stats, then vanish from storage
+    automatically, which is exactly what the auto-cleaning database is for.
+  </p>
+  <div class="callout">🧭 <b>Where to go next:</b> the platform documentation at
+    <code>help.bots.business</code> covers BJS, Git imports, properties and error reading in
+    depth; the <code>/developers</code> hub documents API workflows; and the built-in
+    <b>Settings → Support chat</b> in the app connects you to the community when you want an
+    extra pair of eyes.</div>
+
+</div><!-- /main-content -->
+
+<!-- ═══════════ ENDING ═══════════ -->
+<div class="ending">
+  <div class="end-frame"></div>
+  <div class="end-big">Ready for<br>launch. 🚀</div>
+  <div class="end-sub">
+    Import the pack, connect your token, add the bot as an admin in your channels —
+    and your first premium poll is one conversation away. Every menu, vote and sweep
+    in this guide was verified by an automated 37-check test suite before packaging.
+  </div>
+  <div class="end-res">
+    <div><span class="dot">✦</span><b>Guides</b> — bots.business/guides</div>
+    <div><span class="dot">✦</span><b>Technical Help</b> — help.bots.business</div>
+    <div><span class="dot">✦</span><b>Developers &amp; API</b> — bots.business/developers · dev.bots.business</div>
+    <div><span class="dot">✦</span><b>In-app support</b> — Settings → Support chat</div>
+  </div>
+  <div class="end-date">Advance Poll Bot V2 · October 2026</div>
+</div>
+
+</body>
+</html>
