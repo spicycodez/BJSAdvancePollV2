@@ -79,4 +79,52 @@ if (np && np.step && np.step !== "done") {
   ]);
 }
 
-Bot.runCommand("/render", { text: t, kb: kb });
+// ── BULLETPROOF DELIVERY ─────────────────────────────────────────────
+// /start is the entry point: it must NEVER depend on the Smart Bubble
+// machinery. The old flow (/render -> edit stored bubble) died silently
+// whenever the stored bubble id went stale AND the /renderNew fallback
+// could not recover its payload. /start now sends a fresh menu directly,
+// then re-anchors the bubble on the new message via /bubbleSave.
+function toMarkup(rows) {
+  var out = [];
+  for (var i = 0; i < rows.length; i++) {
+    var row = [];
+    for (var j = 0; j < rows[i].length; j++) {
+      var b = rows[i][j];
+      var btn = { text: b.title };
+      if (b.url) { btn.url = b.url; }
+      else { btn.callback_data = b.command || "/noop"; }
+      row.push(btn);
+    }
+    out.push(row);
+  }
+  return { inline_keyboard: out };
+}
+
+var sent = false;
+try {
+  Api.sendMessage({
+    chat_id: user.telegramid,
+    text: t,
+    parse_mode: "HTML",
+    reply_markup: toMarkup(kb),
+    link_preview_options: { is_disabled: true },
+    on_result: "/bubbleSave",
+    on_error: "/sendPlain",
+    bb_options: { text: t, kb: kb, key: "u" + user.id + "_bubble" }
+  });
+  sent = true;
+} catch (e) { sent = false; }
+
+if (!sent) {
+  // Synchronous BJS-level failure — fall back to the simple sender
+  try {
+    Bot.sendMessage(t, {
+      parse_mode: "HTML",
+      reply_markup: toMarkup(kb),
+      link_preview_options: { is_disabled: true }
+    });
+  } catch (e2) {
+    Bot.sendMessage(t);
+  }
+}
