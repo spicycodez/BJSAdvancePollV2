@@ -1,6 +1,6 @@
 /*CMD
 command: /render
-help: Internal — Smart Bubble renderer (options: text, kb)
+help: Internal — Smart Bubble renderer (options: text, kb, key?)
 need_reply: false
 CMD*/
 
@@ -24,6 +24,9 @@ function toMarkup(rows) {
   return { inline_keyboard: out };
 }
 
+// Callers running without a user context (scheduled chains) pass an explicit key
+var key = options.key || ("u" + (user ? user.id : 0) + "_bubble");
+
 // Prefer the message the user just clicked (it IS the bubble)
 var mid = null, cid = null;
 try {
@@ -32,8 +35,6 @@ try {
     cid = request.message.chat ? request.message.chat.id : (chat ? chat.chatid : null);
   }
 } catch (e) {}
-
-var key = "u" + user.id + "_bubble";
 
 if (!mid) {
   var b = Bot.getProp(key);

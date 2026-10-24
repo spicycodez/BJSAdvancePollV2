@@ -4,9 +4,15 @@ help: Internal — poll message posted: save msg id, finalize
 need_reply: false
 CMD*/
 
+// May run in a scheduled chain (no user context) — everything comes from the poll record.
 if (!options || !options.result) { return; }
 var bb = options.bb_options || options;
 var pollId = bb.pollId;
+if (!pollId) { return; }
+
+function esc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
 
 var poll = Bot.getProp("poll_" + pollId);
 if (!poll) { return; }
@@ -40,7 +46,10 @@ if (gIndex.indexOf(pollId) < 0) {
 
 // Clear the builder state
 Bot.deleteProp("u" + poll.owner_bbid + "_np");
+Bot.clearRunAfter({ label: "pub_" + pollId });
 
+// Explicit bubble key: this chain may have no user, so /render cannot
+// derive the Smart Bubble key from user.id — hand it over.
 Bot.runCommand("/render", {
   text: "🎉 <b>ᴘᴏʟʟ ɪꜱ ʟɪᴠᴇ!</b>\n\n📊 <b>" + esc(poll.title) + "</b>\n📣 ᴘᴏꜱᴛᴇᴅ ᴛᴏ <b>" + esc(poll.channel_title || poll.channel) + "</b>\n" +
     (poll.sponsors.length ? "🔒 ꜱᴘᴏɴꜱᴏʀ ɢᴀᴛᴇᴡᴀʏ: " + poll.sponsors.length + " ᴄʜᴀɴɴᴇʟ(ꜱ)\n" : "") +
@@ -49,9 +58,6 @@ Bot.runCommand("/render", {
     [{ title: "📊 ᴏᴘᴇɴ ᴅᴀꜱʜʙᴏᴀʀᴅ", command: "/pollAdmin " + pollId }],
     [{ title: "🆕 ᴀɴᴏᴛʜᴇʀ ᴘᴏʟʟ", command: "/npMenu" }],
     [{ title: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ", command: "/start" }]
-  ]
+  ],
+  key: "u" + poll.owner_bbid + "_bubble"
 });
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}

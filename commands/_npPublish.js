@@ -46,4 +46,13 @@ Bot.runCommand("/render", {
   kb: [[{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]]
 });
 
-Bot.runCommand("/npResolve", { pollId: id, i: 0 });
+// CHAIN BREAKER — Bots.Business limits nested command/callback chains
+// ("Too many sub commands"). The old flow chained resolve → post → finalize
+// in ONE dispatcher chain and died silently right after this screen.
+// Scheduling the next step starts a FRESH chain; the payload travels in options.
+Bot.run({
+  command: "/npResolve",
+  run_after: 1,
+  label: "pub_" + id,
+  options: { pollId: id, i: 0, ownerId: user.id }
+});

@@ -9,13 +9,9 @@ var bb = options.bb_options || options;
 var res = options.result || {};
 var st = res.status;
 
-var isMember =
-  st === "creator" ||
-  st === "administrator" ||
-  st === "member" ||
-  (st === "restricted" && res.is_member === true);
-
-var poll = Bot.getProp("poll_" + bb.pollId);
+function esc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
 
 function pop(text, alert) {
   try {
@@ -30,15 +26,30 @@ function pop(text, alert) {
   } catch (e) {}
 }
 
+var isMember =
+  st === "creator" ||
+  st === "administrator" ||
+  st === "member" ||
+  (st === "restricted" && res.is_member === true);
+
+var poll = Bot.getProp("poll_" + bb.pollId);
+
 // ─── MEMBER of this sponsor: continue to the next one ───
 if (isMember) {
-  Bot.runCommand("/voteCheck", {
-    pollId: bb.pollId,
-    optIdx: bb.optIdx,
-    tgid: bb.tgid,
-    i: Number(bb.i) + 1,
-    mode: bb.mode,
-    name: bb.name || ""
+  // CHAIN BREAKER — sponsor hops chain Api callbacks; long walks hit the
+  // "Too many sub commands" limit. Fresh chain per hop.
+  Bot.run({
+    command: "/voteCheck",
+    run_after: 1,
+    options: {
+      pollId: bb.pollId,
+      optIdx: bb.optIdx,
+      tgid: bb.tgid,
+      i: Number(bb.i) + 1,
+      mode: bb.mode,
+      k: bb.k,
+      name: bb.name || ""
+    }
   });
   return;
 }
@@ -98,7 +109,3 @@ Api.sendMessage({
   link_preview_options: { is_disabled: true },
   on_error: "/ignoreErr"
 });
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}

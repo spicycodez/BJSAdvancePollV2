@@ -5,9 +5,20 @@ help: Smart Bubble main menu
 need_reply: false
 CMD*/
 
-// Only run the menu in private chats
+function esc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
+// Group/channel execution: /start is also typed inside groups.
+// Some triggers (channel posts, anonymous admins) have NO user record —
+// the old code read user.id unguarded and crashed silently here.
 if (chat && chat.chat_type && chat.chat_type !== "private") {
   Bot.sendMessage("👋 ᴘʟᴇᴀꜱᴇ ᴍᴇꜱꜱᴀɢᴇ ᴍᴇ ɪɴ ᴀ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴀɴᴅ ᴍᴀɴᴀɢᴇ ᴘᴏʟʟꜱ!");
+  return;
+}
+
+if (!user) {
+  Bot.sendMessage("👋 ᴘʟᴇᴀꜱᴇ ᴏᴘᴇɴ ᴀ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ ᴡɪᴛʜ ᴍᴇ ᴀɴᴅ ꜱᴇɴᴅ /start ᴀɢᴀɪɴ!");
   return;
 }
 
@@ -69,7 +80,3 @@ if (np && np.step && np.step !== "done") {
 }
 
 Bot.runCommand("/render", { text: t, kb: kb });
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}

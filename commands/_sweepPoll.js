@@ -4,6 +4,10 @@ help: Join-Left Protection — chunked membership re-verification (options/param
 need_reply: false
 CMD*/
 
+function esc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+
 var pollId = (options && options.pollId) || String(params == null ? "" : params).trim().split(/\s+/)[0];
 var k = Number(options && options.k !== undefined ? options.k : String(params == null ? "" : params).trim().split(/\s+/)[1]);
 
@@ -71,7 +75,3 @@ Bot.runCommand("/voteCheck", {
   k: k,
   name: ""
 });
-
-function esc(s) {
-  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}

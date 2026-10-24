@@ -4,7 +4,7 @@ help: Internal — getChatMember error path (bot lacks admin rights / API hiccup
 need_reply: false
 CMD*/
 
-var bb = options.bb_options || options;
+var bb = (options && options.bb_options) ? options.bb_options : (options || {});
 
 function pop(text, alert) {
   try {

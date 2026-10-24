@@ -1,12 +1,13 @@
 /*CMD
 command: /npResolve
-help: Internal — resolve target/sponsor channels (options: pollId, i)
+help: Internal — resolve target/sponsor channels (options: pollId, i, ownerId)
 need_reply: false
 CMD*/
 
-if (!user || !options || !options.pollId) { return; }
+// Runs in its own (scheduled) chain — no user/chat context guaranteed.
+if (!options || !options.pollId) { return; }
 
-var np = Bot.getProp("u" + user.id + "_np");
+var np = Bot.getProp("u" + (options.ownerId || "") + "_np");
 var poll = Bot.getProp("poll_" + options.pollId);
 if (!np || !poll) { return; }
 
@@ -21,9 +22,17 @@ if (i === 0) {
   target = "@" + sp.user;
 }
 
-Api.getChat( {
-  chat_id: target,
-  on_result: "/npResolveRes",
-  on_error: "/npFail",
-  bb_options: { pollId: options.pollId, i: i }
-});
+try {
+  Api.getChat( {
+    chat_id: target,
+    on_result: "/npResolveRes",
+    on_error: "/npFail",
+    bb_options: { pollId: options.pollId, i: i, ownerId: options.ownerId }
+  });
+} catch (e) {
+  // Unsupported method / sandbox error — surface it instead of hanging forever
+  Bot.runCommand("/npFail", {
+    error: "channel check failed: " + String(e && e.message ? e.message : e),
+    bb_options: { pollId: options.pollId, i: i, ownerId: options.ownerId }
+  });
+}

@@ -66,7 +66,7 @@ publish → share → vote from the channel post 🎉
 
 ---
 
-## 🧭 Command reference (52 commands)
+## 🧭 Command reference (53 commands)
 
 ### 👤 User-facing
 | Command | Aliases | Purpose |
@@ -124,6 +124,7 @@ Every builder step uses a **renderer + waiter** pair: the renderer (`need_reply:
 | `/npFail` | Publish/post failure handler with actionable fix instructions (re-arms the builder for Retry) |
 | `/ignoreErr` | Swallows expected Telegram API errors (deleted messages, etc.) |
 | `/noop` | Do-nothing button target |
+| `!` | Friendly error fallback shown by BBS when a command errors in private chat |
 | `/setcmdsDone` | Confirmation for `/setcmds` |
 
 ---
@@ -132,6 +133,7 @@ Every builder step uses a **renderer + waiter** pair: the renderer (`need_reply:
 
 - **Smart Bubble** — every menu render goes through `/render`: it tries `editMessageText` on the user's stored bubble message id; if the edit fails (message deleted, too old) it falls back to `/renderNew` (fresh send) and re-registers the new id. One message, forever.
 - **Renderer/waiter builder** — Bots.Business runs a `need_reply` command's BJS **after** the user's reply, never when the prompt is first sent. So each builder step is a pair: a renderer that paints the prompt instantly, and a waiter that processes the typed answer. Buttons always target instant (`need_reply: false`) commands.
+- **Chain breakers** — Bots.Business silently kills nested command/callback chains that get too long ("Too many sub commands"). Multi-step async flows (publish → resolve → post → finalize, sponsor gate walks, membership sweeps) therefore hop to their next stage with `Bot.run({ run_after: 1 })`, which starts a **fresh dispatcher chain** and carries the payload in `options`. No chain in this bot exceeds ~4 commands.
 - **Small-caps typography** — all user-facing text (menus, buttons, notices, channel posts) is stylized in **Unicode small caps** (ʟɪᴋᴇ ᴛʜɪꜱ) for a clean, premium look. Command names, storage keys and routing strings stay plain ASCII so nothing breaks.
 - **Sponsor Gateway** — `/vote` walks each bound sponsor channel via `Api.getChatMember`; non-members get join buttons instead of a counted vote. Each gate step is its own command so long chains never hit BJS step limits.
 - **Join-Left Protection (3 layers)** — ① every poll footer has a *Refresh* button that re-verifies the voter on the spot; ② the hourly watchdog schedules a chunked `/sweepPoll` per live poll (5 voters per pass, yielding between chunks to stay light); ③ removed votes decrement counters and all posted messages are re-rendered instantly.

@@ -7,10 +7,12 @@ CMD*/
 if (!options || !options.result) { return; }
 var bb = options.bb_options || options;
 var pollId = bb.pollId;
+var ownerId = bb.ownerId;
 var i = Number(bb.i || 0);
+if (!pollId) { return; }
 
 var poll = Bot.getProp("poll_" + pollId);
-var np = Bot.getProp("u" + (user ? user.id : poll ? poll.owner_bbid : 0) + "_np");
+var np = Bot.getProp("u" + (ownerId || "") + "_np");
 if (!poll || !np) { return; }
 
 var ch = options.result;
@@ -29,7 +31,19 @@ Bot.setProp({ name: "poll_" + pollId, value: poll, type: "json" });
 
 var total = 1 + (np.sponsors ? np.sponsors.length : 0);
 if (i + 1 < total) {
-  Bot.runCommand("/npResolve", { pollId: pollId, i: i + 1 });
+  // CHAIN BREAKER — next resolution runs in a fresh dispatcher chain
+  Bot.run({
+    command: "/npResolve",
+    run_after: 1,
+    label: "pub_" + pollId,
+    options: { pollId: pollId, i: i + 1, ownerId: ownerId }
+  });
 } else {
-  Bot.runCommand("/npPost", { pollId: pollId });
+  // CHAIN BREAKER — posting starts a fresh chain too
+  Bot.run({
+    command: "/npPost",
+    run_after: 1,
+    label: "pub_" + pollId,
+    options: { pollId: pollId }
+  });
 }

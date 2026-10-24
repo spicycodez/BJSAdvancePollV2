@@ -38,7 +38,8 @@ if (action === "pause" && poll.status === "live") {
   Bot.setProp({ name: "poll_" + pollId, value: poll, type: "json" });
   Bot.runCommand("/pollRender", { pollId: pollId });
   pop("⏸ ᴘᴏʟʟ ᴘᴀᴜꜱᴇᴅ — ᴠᴏᴛɪɴɢ ᴅɪꜱᴀʙʟᴇᴅ.", false);
-  Bot.runCommand("/pollAdmin", { pollId: pollId });
+  // CHAIN BREAKER — dashboard opens in a fresh chain
+  Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } });
   return;
 }
 
@@ -48,7 +49,8 @@ if (action === "resume" && poll.status === "paused") {
   Bot.setProp({ name: "poll_" + pollId, value: poll, type: "json" });
   Bot.runCommand("/pollRender", { pollId: pollId });
   pop("▶️ ᴘᴏʟʟ ʀᴇꜱᴜᴍᴇᴅ!", false);
-  Bot.runCommand("/pollAdmin", { pollId: pollId });
+  // CHAIN BREAKER — dashboard opens in a fresh chain
+  Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } });
   return;
 }
 
@@ -61,7 +63,8 @@ if (action === "stop" && poll.status !== "stopped") {
   Bot.clearRunAfter({ label: "sweep_" + pollId });
   Bot.runCommand("/pollRender", { pollId: pollId });
   pop("⏹ ᴘᴏʟʟ ꜱᴛᴏᴘᴘᴇᴅ. ᴅᴀᴛᴀ ᴀᴜᴛᴏ-ᴄʟᴇᴀɴꜱ ɪɴ 48ʜ.", true);
-  Bot.runCommand("/pollAdmin", { pollId: pollId });
+  // CHAIN BREAKER — dashboard opens in a fresh chain
+  Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } });
   return;
 }
 
@@ -71,7 +74,8 @@ if (action === "hide" && !poll.hide) {
   Bot.setProp({ name: "poll_" + pollId, value: poll, type: "json" });
   Bot.runCommand("/pollRender", { pollId: pollId }); // instant update across ALL channels
   pop("🙈 ᴠᴏᴛᴇ ᴄᴏᴜɴᴛꜱ ʜɪᴅᴅᴇɴ ᴇᴠᴇʀʏᴡʜᴇʀᴇ.", false);
-  Bot.runCommand("/pollAdmin", { pollId: pollId });
+  // CHAIN BREAKER — dashboard opens in a fresh chain
+  Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } });
   return;
 }
 
@@ -80,7 +84,8 @@ if (action === "show" && poll.hide) {
   Bot.setProp({ name: "poll_" + pollId, value: poll, type: "json" });
   Bot.runCommand("/pollRender", { pollId: pollId });
   pop("👁 ᴠᴏᴛᴇ ᴄᴏᴜɴᴛꜱ ᴠɪꜱɪʙʟᴇ ᴀɢᴀɪɴ.", false);
-  Bot.runCommand("/pollAdmin", { pollId: pollId });
+  // CHAIN BREAKER — dashboard opens in a fresh chain
+  Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } });
   return;
 }
 
@@ -120,8 +125,8 @@ if (action === "stats") {
 
 // ─── Manual re-verification sweep ───
 if (action === "sweep") {
-  if (poll.status !== "live") { pop("⏹ ᴏɴʟʏ ʟɪᴠᴇ ᴘᴏʟʟꜱ ᴄᴀɴ ʙᴇ ʀᴇ-ᴠᴇʀɪꜰɪᴇᴅ.", true); Bot.runCommand("/pollAdmin", { pollId: pollId }); return; }
-  if (!poll.sponsors.length) { pop("🔒 ᴛʜɪꜱ ᴘᴏʟʟ ʜᴀꜱ ɴᴏ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟꜱ ᴛᴏ ᴄʜᴇᴄᴋ.", true); Bot.runCommand("/pollAdmin", { pollId: pollId }); return; }
+  if (poll.status !== "live") { pop("⏹ ᴏɴʟʏ ʟɪᴠᴇ ᴘᴏʟʟꜱ ᴄᴀɴ ʙᴇ ʀᴇ-ᴠᴇʀɪꜰɪᴇᴅ.", true); Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } }); return; }
+  if (!poll.sponsors.length) { pop("🔒 ᴛʜɪꜱ ᴘᴏʟʟ ʜᴀꜱ ɴᴏ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟꜱ ᴛᴏ ᴄʜᴇᴄᴋ.", true); Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } }); return; }
   poll.sweeping = true;
   poll.sweep_removed = 0;
   Bot.setProp({ name: "poll_" + pollId, value: poll, type: "json" });
@@ -139,9 +144,9 @@ if (action === "sweep") {
 
 // ─── Re-post the poll message to the channel ───
 if (action === "repost") {
-  Bot.runCommand("/npPost", { pollId: pollId, repost: true });
+  Bot.run({ command: "/npPost", run_after: 1, options: { pollId: pollId, repost: true } });
   pop("📢 ᴘᴏꜱᴛɪɴɢ ᴀ ꜰʀᴇꜱʜ ᴄᴏᴘʏ ᴛᴏ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ…", false);
-  Bot.runCommand("/pollAdmin", { pollId: pollId });
+  Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } });
   return;
 }
 
@@ -154,4 +159,4 @@ if (action === "del") {
 }
 
 pop("⚠️ ᴜɴᴋɴᴏᴡɴ ᴀᴄᴛɪᴏɴ.", true);
-Bot.runCommand("/pollAdmin", { pollId: pollId });
+Bot.run({ command: "/pollAdmin", run_after: 1, options: { pollId: pollId } });
