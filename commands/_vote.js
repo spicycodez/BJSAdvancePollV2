@@ -25,11 +25,11 @@ function pop(text, alert) {
   } catch (e) {}
 }
 
-if (!poll) { pop("⚠️ Poll not found.", true); return; }
-if (isNaN(optIdx) || optIdx < 0 || optIdx >= poll.options.length) { pop("⚠️ Invalid option.", true); return; }
+if (!poll) { pop("⚠️ ᴘᴏʟʟ ɴᴏᴛ ꜰᴏᴜɴᴅ.", true); return; }
+if (isNaN(optIdx) || optIdx < 0 || optIdx >= poll.options.length) { pop("⚠️ ɪɴᴠᴀʟɪᴅ ᴏᴘᴛɪᴏɴ.", true); return; }
 
-if (poll.status === "paused") { pop("⏸ Voting is paused right now.", true); return; }
-if (poll.status !== "live") { pop("⏹ This poll has ended.", true); return; }
+if (poll.status === "paused") { pop("⏸ ᴠᴏᴛɪɴɢ ɪꜱ ᴘᴀᴜꜱᴇᴅ ʀɪɢʜᴛ ɴᴏᴡ.", true); return; }
+if (poll.status !== "live") { pop("⏹ ᴛʜɪꜱ ᴘᴏʟʟ ʜᴀꜱ ᴇɴᴅᴇᴅ.", true); return; }
 
 var tgid = String(user.telegramid);
 var name = "";

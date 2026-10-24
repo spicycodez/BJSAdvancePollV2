@@ -5,6 +5,6 @@ need_reply: false
 CMD*/
 
 Bot.runCommand("/render", {
-  text: "✅ <b>Command list registered!</b>\n\nUsers will now see the menu button in Telegram:\n/start • /newpoll • /mypolls • /help",
-  kb: [[{ title: "🏠 Main Menu", command: "/start" }]]
+  text: "✅ <b>ᴄᴏᴍᴍᴀɴᴅ ʟɪꜱᴛ ʀᴇɢɪꜱᴛᴇʀᴇᴅ!</b>\n\nᴜꜱᴇʀꜱ ᴡɪʟʟ ɴᴏᴡ ꜱᴇᴇ ᴛʜᴇ ᴍᴇɴᴜ ʙᴜᴛᴛᴏɴ ɪɴ ᴛᴇʟᴇɢʀᴀᴍ:\n/ꜱᴛᴀʀᴛ • /ɴᴇᴡᴘᴏʟʟ • /ᴍʏᴘᴏʟʟꜱ • /ʜᴇʟᴘ",
+  kb: [[{ title: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ", command: "/start" }]]
 });

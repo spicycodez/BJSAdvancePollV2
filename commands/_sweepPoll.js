@@ -38,10 +38,10 @@ if (k >= voters.length) {
   if (removed > 0) {
     Api.sendMessage({
       chat_id: poll.owner_tgid,
-      text: "🛡 <b>Join-Left Protection report</b>\n\n" +
+      text: "🛡 <b>ᴊᴏɪɴ-ʟᴇꜰᴛ ᴘʀᴏᴛᴇᴄᴛɪᴏɴ ʀᴇᴘᴏʀᴛ</b>\n\n" +
         "📊 <b>" + esc(poll.title) + "</b>\n" +
-        "Removed <b>" + removed + "</b> vote(s) — those users left the sponsor channel(s) after voting.\n\n" +
-        "The poll message has been updated everywhere.",
+        "ʀᴇᴍᴏᴠᴇᴅ <b>" + removed + "</b> ᴠᴏᴛᴇ(ꜱ) — ᴛʜᴏꜱᴇ ᴜꜱᴇʀꜱ ʟᴇꜰᴛ ᴛʜᴇ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟ(ꜱ) ᴀꜰᴛᴇʀ ᴠᴏᴛɪɴɢ.\n\n" +
+        "ᴛʜᴇ ᴘᴏʟʟ ᴍᴇꜱꜱᴀɢᴇ ʜᴀꜱ ʙᴇᴇɴ ᴜᴘᴅᴀᴛᴇᴅ ᴇᴠᴇʀʏᴡʜᴇʀᴇ.",
       parse_mode: "HTML",
       link_preview_options: { is_disabled: true },
       on_error: "/ignoreErr"

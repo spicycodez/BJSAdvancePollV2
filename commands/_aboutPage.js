@@ -5,22 +5,22 @@ need_reply: false
 CMD*/
 
 var t =
-  "ℹ️ <b>About</b>\n\n" +
-  "🚀 <b>Advance Poll Bot V2</b>\n" +
-  "A premium, app-like poll experience inside Telegram.\n\n" +
-  "✨ <b>Features</b>\n" +
-  "• 🧹 Zero-Spam Smart Bubble UI\n" +
-  "• 🔒 Multi-channel sponsor gateway (up to 2 channels)\n" +
-  "• 🛡 Join-Left protection with automatic re-verification\n" +
-  "• 🛒 Step-by-step cart-style poll builder\n" +
-  "• 📊 Advanced history dashboard\n" +
-  "• 🧹 Auto-cleaning database\n\n" +
-  "Built with Bots.Business (BJS).";
+  "ℹ️ <b>ᴀʙᴏᴜᴛ</b>\n\n" +
+  "🚀 <b>ᴀᴅᴠᴀɴᴄᴇ ᴘᴏʟʟ ʙᴏᴛ ᴠ2</b>\n" +
+  "ᴀ ᴘʀᴇᴍɪᴜᴍ, ᴀᴘᴘ-ʟɪᴋᴇ ᴘᴏʟʟ ᴇxᴘᴇʀɪᴇɴᴄᴇ ɪɴꜱɪᴅᴇ ᴛᴇʟᴇɢʀᴀᴍ.\n\n" +
+  "✨ <b>ꜰᴇᴀᴛᴜʀᴇꜱ</b>\n" +
+  "• 🧹 ᴢᴇʀᴏ-ꜱᴘᴀᴍ ꜱᴍᴀʀᴛ ʙᴜʙʙʟᴇ ᴜɪ\n" +
+  "• 🔒 ᴍᴜʟᴛɪ-ᴄʜᴀɴɴᴇʟ ꜱᴘᴏɴꜱᴏʀ ɢᴀᴛᴇᴡᴀʏ (ᴜᴘ ᴛᴏ 2 ᴄʜᴀɴɴᴇʟꜱ)\n" +
+  "• 🛡 ᴊᴏɪɴ-ʟᴇꜰᴛ ᴘʀᴏᴛᴇᴄᴛɪᴏɴ ᴡɪᴛʜ ᴀᴜᴛᴏᴍᴀᴛɪᴄ ʀᴇ-ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ\n" +
+  "• 🛒 ꜱᴛᴇᴘ-ʙʏ-ꜱᴛᴇᴘ ᴄᴀʀᴛ-ꜱᴛʏʟᴇ ᴘᴏʟʟ ʙᴜɪʟᴅᴇʀ\n" +
+  "• 📊 ᴀᴅᴠᴀɴᴄᴇᴅ ʜɪꜱᴛᴏʀʏ ᴅᴀꜱʜʙᴏᴀʀᴅ\n" +
+  "• 🧹 ᴀᴜᴛᴏ-ᴄʟᴇᴀɴɪɴɢ ᴅᴀᴛᴀʙᴀꜱᴇ\n\n" +
+  "ʙᴜɪʟᴛ ᴡɪᴛʜ ʙᴏᴛꜱ.ʙᴜꜱɪɴᴇꜱꜱ (ʙᴊꜱ).";
 
 var kb = [
   [
-    { title: "❓ Help", command: "/helpPage" },
-    { title: "🏠 Main Menu", command: "/start" }
+    { title: "❓ ʜᴇʟᴘ", command: "/helpPage" },
+    { title: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ", command: "/start" }
   ]
 ];
 

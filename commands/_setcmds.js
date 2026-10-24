@@ -6,16 +6,16 @@ CMD*/
 
 Api.call("setMyCommands", {
   commands: [
-    { command: "start", description: "🏠 Main menu" },
-    { command: "newpoll", description: "🆕 Create a new poll" },
-    { command: "mypolls", description: "📊 History dashboard" },
-    { command: "help", description: "❓ How to use the bot" }
+    { command: "start", description: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ" },
+    { command: "newpoll", description: "🆕 ᴄʀᴇᴀᴛᴇ ᴀ ɴᴇᴡ ᴘᴏʟʟ" },
+    { command: "mypolls", description: "📊 ʜɪꜱᴛᴏʀʏ ᴅᴀꜱʜʙᴏᴀʀᴅ" },
+    { command: "help", description: "❓ ʜᴏᴡ ᴛᴏ ᴜꜱᴇ ᴛʜᴇ ʙᴏᴛ" }
   ],
   on_result: "/setcmdsDone",
   on_error: "/ignoreErr"
 });
 
 Bot.runCommand("/render", {
-  text: "⏳ Registering the command list in Telegram…",
-  kb: [[{ title: "🏠 Main Menu", command: "/start" }]]
+  text: "⏳ ʀᴇɢɪꜱᴛᴇʀɪɴɢ ᴛʜᴇ ᴄᴏᴍᴍᴀɴᴅ ʟɪꜱᴛ ɪɴ ᴛᴇʟᴇɢʀᴀᴍ…",
+  kb: [[{ title: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ", command: "/start" }]]
 });

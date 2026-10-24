@@ -26,7 +26,7 @@ for (var i = 0; i < ids.length; i++) {
       Bot.runCommand("/pollRender", { pollId: id });
       Api.sendMessage({
         chat_id: poll.owner_tgid,
-        text: "⏹ <b>Auto-stopped:</b> your poll <b>" + esc(poll.title) + "</b> reached the maximum age of " + (CFG.max_age_days || 30) + " days.\nIts data will be cleaned automatically.",
+        text: "⏹ <b>ᴀᴜᴛᴏ-ꜱᴛᴏᴘᴘᴇᴅ:</b> ʏᴏᴜʀ ᴘᴏʟʟ <b>" + esc(poll.title) + "</b> ʀᴇᴀᴄʜᴇᴅ ᴛʜᴇ ᴍᴀxɪᴍᴜᴍ ᴀɢᴇ ᴏꜰ " + (CFG.max_age_days || 30) + " ᴅᴀʏꜱ.\nɪᴛꜱ ᴅᴀᴛᴀ ᴡɪʟʟ ʙᴇ ᴄʟᴇᴀɴᴇᴅ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ.",
         parse_mode: "HTML",
         on_error: "/ignoreErr"
       });

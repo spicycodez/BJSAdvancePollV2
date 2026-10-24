@@ -133,6 +133,7 @@ publish → share → vote from the channel post 🎉
 ## 🏗 How it works
 
 - **Smart Bubble** — every menu render goes through `/render`: it tries `editMessageText` on the user's stored bubble message id; if the edit fails (message deleted, too old) it falls back to `/renderNew` (delete + fresh send) and re-registers the new id. One message, forever.
+- **Small-caps typography** — all user-facing text (menus, buttons, notices, channel posts) is stylized in **Unicode small caps** (ʟɪᴋᴇ ᴛʜɪꜱ) for a clean, premium look. Command names, storage keys and routing strings stay plain ASCII so nothing breaks.
 - **Sponsor Gateway** — `/vote` walks each bound sponsor channel via `Api.getChatMember`; non-members get join buttons instead of a counted vote. Each gate step is its own command so long chains never hit BJS step limits.
 - **Join-Left Protection (3 layers)** — ① every poll footer has a *Refresh* button that re-verifies the voter on the spot; ② the hourly watchdog schedules a chunked `/sweepPoll` per live poll (5 voters per pass, yielding between chunks to stay light); ③ removed votes decrement counters and all posted messages are re-rendered instantly.
 - **Hide votes** — `hide` toggles per poll; when on, every posted message shows options without counts. Toggling re-renders every channel post at once.

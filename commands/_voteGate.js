@@ -26,9 +26,9 @@ if (bb.mode === "sweep") {
 }
 
 if (bb.mode === "refresh") {
-  pop("⚠️ Couldn't verify membership right now — your vote stays for now.", true);
+  pop("⚠️ ᴄᴏᴜʟᴅɴ'ᴛ ᴠᴇʀɪꜰʏ ᴍᴇᴍʙᴇʀꜱʜɪᴘ ʀɪɢʜᴛ ɴᴏᴡ — ʏᴏᴜʀ ᴠᴏᴛᴇ ꜱᴛᴀʏꜱ ꜰᴏʀ ɴᴏᴡ.", true);
   return;
 }
 
 // mode "vote": verification unavailable — do not count, explain
-pop("⚠️ Verification is temporarily unavailable. Please try again in a minute.", true);
+pop("⚠️ ᴠᴇʀɪꜰɪᴄᴀᴛɪᴏɴ ɪꜱ ᴛᴇᴍᴘᴏʀᴀʀɪʟʏ ᴜɴᴀᴠᴀɪʟᴀʙʟᴇ. ᴘʟᴇᴀꜱᴇ ᴛʀʏ ᴀɢᴀɪɴ ɪɴ ᴀ ᴍɪɴᴜᴛᴇ.", true);

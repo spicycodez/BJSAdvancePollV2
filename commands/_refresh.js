@@ -13,7 +13,7 @@ if (!poll) {
     if (request && request.id) {
       Api.call("answerCallbackQuery", {
         callback_query_id: request.id,
-        text: "⚠️ Poll not found.",
+        text: "⚠️ ᴘᴏʟʟ ɴᴏᴛ ꜰᴏᴜɴᴅ.",
         show_alert: true,
         on_error: "/ignoreErr"
       });
@@ -41,7 +41,7 @@ if (poll.status === "live" && poll.sponsors.length && poll.votes[tgid] !== undef
     if (request && request.id) {
       Api.call("answerCallbackQuery", {
         callback_query_id: request.id,
-        text: "🔄 Results updated!",
+        text: "🔄 ʀᴇꜱᴜʟᴛꜱ ᴜᴘᴅᴀᴛᴇᴅ!",
         show_alert: false,
         on_error: "/ignoreErr"
       });

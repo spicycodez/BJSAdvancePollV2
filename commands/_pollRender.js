@@ -13,10 +13,10 @@ function esc(s) {
 }
 
 function buildText(p) {
-  var icon = p.status === "live" ? "🟢 LIVE" : (p.status === "paused" ? "⏸ PAUSED" : "⏹ ENDED");
+  var icon = p.status === "live" ? "🟢 ʟɪᴠᴇ" : (p.status === "paused" ? "⏸ ᴘᴀᴜꜱᴇᴅ" : "⏹ ᴇɴᴅᴇᴅ");
   var t = "";
-  if (p.status === "paused") { t += "⏸ <b>VOTING IS TEMPORARILY PAUSED</b>\n\n"; }
-  if (p.status === "stopped") { t += "⏹ <b>THIS POLL HAS ENDED</b>\n\n"; }
+  if (p.status === "paused") { t += "⏸ <b>ᴠᴏᴛɪɴɢ ɪꜱ ᴛᴇᴍᴘᴏʀᴀʀɪʟʏ ᴘᴀᴜꜱᴇᴅ</b>\n\n"; }
+  if (p.status === "stopped") { t += "⏹ <b>ᴛʜɪꜱ ᴘᴏʟʟ ʜᴀꜱ ᴇɴᴅᴇᴅ</b>\n\n"; }
   t += "📊 <b>" + esc(p.title) + "</b>\n";
   if (p.desc) { t += "<i>" + esc(p.desc) + "</i>\n"; }
   t += "\n";
@@ -38,9 +38,9 @@ function buildText(p) {
     t += bar + " " + (i + 1) + ". <b>" + esc(p.options[i]) + "</b> — " + cnt + "\n";
   }
 
-  t += "\n👥 Total votes: " + (p.hide ? "•••" : total) + " • " + icon;
+  t += "\n👥 ᴛᴏᴛᴀʟ ᴠᴏᴛᴇꜱ: " + (p.hide ? "•••" : total) + " • " + icon;
   if (p.sponsors && p.sponsors.length) {
-    t += "\n🔒 <i>Sponsored poll — join to vote</i>";
+    t += "\n🔒 <i>ꜱᴘᴏɴꜱᴏʀᴇᴅ ᴘᴏʟʟ — ᴊᴏɪɴ ᴛᴏ ᴠᴏᴛᴇ</i>";
   }
   return t;
 }
@@ -52,7 +52,7 @@ function buildMarkup(p) {
       rows.push([{ text: "🗳 " + p.options[i], callback_data: "/vote " + p.id + " " + i }]);
     }
   }
-  rows.push([{ text: "🔄 Refresh", callback_data: "/refresh " + p.id }]);
+  rows.push([{ text: "🔄 ʀᴇꜰʀᴇꜱʜ", callback_data: "/refresh " + p.id }]);
   return { inline_keyboard: rows };
 }
 

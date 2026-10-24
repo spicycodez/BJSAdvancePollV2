@@ -15,18 +15,18 @@ var MAXO = CFG.max_options || 10;
 var txt = String(message == null ? "" : message).trim();
 
 function cartText(note) {
-  var t = "🏗 <b>Poll Builder</b> — Step 3/5\n🛒 <b>Options Cart</b>\n\n";
+  var t = "🏗 <b>ᴘᴏʟʟ ʙᴜɪʟᴅᴇʀ</b> — ꜱᴛᴇᴘ 3/5\n🛒 <b>ᴏᴘᴛɪᴏɴꜱ ᴄᴀʀᴛ</b>\n\n";
   if (note) { t += note + "\n"; }
   if (!np.options.length) {
-    t += "The cart is empty.\nSend your <b>first option</b> as a message.\n\n" +
-      "<i>Example: Pizza</i> — then just keep sending more.";
+    t += "ᴛʜᴇ ᴄᴀʀᴛ ɪꜱ ᴇᴍᴘᴛʏ.\nꜱᴇɴᴅ ʏᴏᴜʀ <b>ꜰɪʀꜱᴛ ᴏᴘᴛɪᴏɴ</b> ᴀꜱ ᴀ ᴍᴇꜱꜱᴀɢᴇ.\n\n" +
+      "<i>ᴇxᴀᴍᴘʟᴇ: ᴘɪᴢᴢᴀ</i> — ᴛʜᴇɴ ᴊᴜꜱᴛ ᴋᴇᴇᴘ ꜱᴇɴᴅɪɴɢ ᴍᴏʀᴇ.";
   } else {
-    t += "Current options:\n";
+    t += "ᴄᴜʀʀᴇɴᴛ ᴏᴘᴛɪᴏɴꜱ:\n";
     for (var i = 0; i < np.options.length; i++) {
       t += "  " + (i + 1) + ". " + esc(np.options[i]) + "\n";
     }
-    t += "\nSend the <b>next option</b> as a message, or use the buttons below.\n" +
-      "Minimum 2 options • Maximum " + MAXO + ".";
+    t += "\nꜱᴇɴᴅ ᴛʜᴇ <b>ɴᴇxᴛ ᴏᴘᴛɪᴏɴ</b> ᴀꜱ ᴀ ᴍᴇꜱꜱᴀɢᴇ, ᴏʀ ᴜꜱᴇ ᴛʜᴇ ʙᴜᴛᴛᴏɴꜱ ʙᴇʟᴏᴡ.\n" +
+      "ᴍɪɴɪᴍᴜᴍ 2 ᴏᴘᴛɪᴏɴꜱ • ᴍᴀxɪᴍᴜᴍ " + MAXO + ".";
   }
   return t;
 }
@@ -35,13 +35,13 @@ function cartKb() {
   var kb = [];
   var row = [];
   if (np.options.length) {
-    row.push({ title: "🗑 Remove last", command: "/npOpt rm" });
+    row.push({ title: "🗑 ʀᴇᴍᴏᴠᴇ ʟᴀꜱᴛ", command: "/npOpt rm" });
     if (np.options.length >= 2) {
-      row.push({ title: "✅ Done (" + np.options.length + ")", command: "/npOpt done" });
+      row.push({ title: "✅ ᴅᴏɴᴇ (" + np.options.length + ")", command: "/npOpt done" });
     }
   }
   if (row.length) { kb.push(row); }
-  kb.push([{ title: "✖ Cancel", command: "/npc" }]);
+  kb.push([{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]);
   return kb;
 }
 
@@ -59,9 +59,9 @@ if (txt.indexOf("/npOpt") === 0 || txt === "") {
     if (np.options.length) {
       var gone = np.options.pop();
       Bot.setProp({ name: key, value: np, type: "json" });
-      Bot.runCommand("/render", { text: cartText("🗑 Removed: <s>" + esc(gone) + "</s>"), kb: cartKb() });
+      Bot.runCommand("/render", { text: cartText("🗑 ʀᴇᴍᴏᴠᴇᴅ: <s>" + esc(gone) + "</s>"), kb: cartKb() });
     } else {
-      Bot.runCommand("/render", { text: cartText("⚠️ The cart is already empty."), kb: cartKb() });
+      Bot.runCommand("/render", { text: cartText("⚠️ ᴛʜᴇ ᴄᴀʀᴛ ɪꜱ ᴀʟʀᴇᴀᴅʏ ᴇᴍᴘᴛʏ."), kb: cartKb() });
     }
     return;
   }
@@ -74,12 +74,12 @@ if (txt === "/npc") { return; }
 
 // Answer run: a new option was typed
 if (txt.length > 32) {
-  Bot.runCommand("/render", { text: cartText("⚠️ Option too long (" + txt.length + "/32). Send a shorter one:"), kb: cartKb() });
+  Bot.runCommand("/render", { text: cartText("⚠️ ᴏᴘᴛɪᴏɴ ᴛᴏᴏ ʟᴏɴɢ (" + txt.length + "/32). ꜱᴇɴᴅ ᴀ ꜱʜᴏʀᴛᴇʀ ᴏɴᴇ:"), kb: cartKb() });
   return;
 }
 
 if (np.options.indexOf(txt) >= 0) {
-  Bot.runCommand("/render", { text: cartText("⚠️ <b>" + esc(txt) + "</b> is already in the cart. Send a different option:"), kb: cartKb() });
+  Bot.runCommand("/render", { text: cartText("⚠️ <b>" + esc(txt) + "</b> ɪꜱ ᴀʟʀᴇᴀᴅʏ ɪɴ ᴛʜᴇ ᴄᴀʀᴛ. ꜱᴇɴᴅ ᴀ ᴅɪꜰꜰᴇʀᴇɴᴛ ᴏᴘᴛɪᴏɴ:"), kb: cartKb() });
   return;
 }
 
@@ -92,4 +92,4 @@ if (np.options.length >= MAXO) {
   return;
 }
 
-Bot.runCommand("/render", { text: cartText("✅ Added <b>" + esc(txt) + "</b> to the cart!"), kb: cartKb() });
+Bot.runCommand("/render", { text: cartText("✅ ᴀᴅᴅᴇᴅ <b>" + esc(txt) + "</b> ᴛᴏ ᴛʜᴇ ᴄᴀʀᴛ!"), kb: cartKb() });

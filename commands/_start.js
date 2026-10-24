@@ -7,7 +7,7 @@ CMD*/
 
 // Only run the menu in private chats
 if (chat && chat.chat_type && chat.chat_type !== "private") {
-  Bot.sendMessage("👋 Please message me in a private chat to create and manage polls!");
+  Bot.sendMessage("👋 ᴘʟᴇᴀꜱᴇ ᴍᴇꜱꜱᴀɢᴇ ᴍᴇ ɪɴ ᴀ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀᴛ ᴛᴏ ᴄʀᴇᴀᴛᴇ ᴀɴᴅ ᴍᴀɴᴀɢᴇ ᴘᴏʟʟꜱ!");
   return;
 }
 
@@ -38,24 +38,24 @@ try {
   if (request && request.from && request.from.first_name) name = request.from.first_name;
 } catch (e) {}
 
-var t = "🚀 <b>Advance Poll Bot V2</b>\n\n" +
-  "Hey <b>" + esc(name) + "</b>! 👋\n\n" +
-  "Create premium polls for your channels with:\n" +
-  "🧹 <b>Zero-Spam Smart Bubble</b> — all menus live in one self-updating message\n" +
-  "🔒 <b>Sponsor Gateway</b> — require joining up to 2 channels before voting\n" +
-  "🛡 <b>Join-Left Protection</b> — votes of leavers are removed automatically\n" +
-  "🛒 <b>Step-by-Step Builder</b> — cart-style options, no confusing symbols\n" +
-  "📊 <b>History Dashboard</b> — pause, resume, stop, hide votes in one tap\n\n" +
-  "👇 <b>Choose an action:</b>";
+var t = "🚀 <b>ᴀᴅᴠᴀɴᴄᴇ ᴘᴏʟʟ ʙᴏᴛ ᴠ2</b>\n\n" +
+  "ʜᴇʏ <b>" + esc(name) + "</b>! 👋\n\n" +
+  "ᴄʀᴇᴀᴛᴇ ᴘʀᴇᴍɪᴜᴍ ᴘᴏʟʟꜱ ꜰᴏʀ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟꜱ ᴡɪᴛʜ:\n" +
+  "🧹 <b>ᴢᴇʀᴏ-ꜱᴘᴀᴍ ꜱᴍᴀʀᴛ ʙᴜʙʙʟᴇ</b> — ᴀʟʟ ᴍᴇɴᴜꜱ ʟɪᴠᴇ ɪɴ ᴏɴᴇ ꜱᴇʟꜰ-ᴜᴘᴅᴀᴛɪɴɢ ᴍᴇꜱꜱᴀɢᴇ\n" +
+  "🔒 <b>ꜱᴘᴏɴꜱᴏʀ ɢᴀᴛᴇᴡᴀʏ</b> — ʀᴇǫᴜɪʀᴇ ᴊᴏɪɴɪɴɢ ᴜᴘ ᴛᴏ 2 ᴄʜᴀɴɴᴇʟꜱ ʙᴇꜰᴏʀᴇ ᴠᴏᴛɪɴɢ\n" +
+  "🛡 <b>ᴊᴏɪɴ-ʟᴇꜰᴛ ᴘʀᴏᴛᴇᴄᴛɪᴏɴ</b> — ᴠᴏᴛᴇꜱ ᴏꜰ ʟᴇᴀᴠᴇʀꜱ ᴀʀᴇ ʀᴇᴍᴏᴠᴇᴅ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ\n" +
+  "🛒 <b>ꜱᴛᴇᴘ-ʙʏ-ꜱᴛᴇᴘ ʙᴜɪʟᴅᴇʀ</b> — ᴄᴀʀᴛ-ꜱᴛʏʟᴇ ᴏᴘᴛɪᴏɴꜱ, ɴᴏ ᴄᴏɴꜰᴜꜱɪɴɢ ꜱʏᴍʙᴏʟꜱ\n" +
+  "📊 <b>ʜɪꜱᴛᴏʀʏ ᴅᴀꜱʜʙᴏᴀʀᴅ</b> — ᴘᴀᴜꜱᴇ, ʀᴇꜱᴜᴍᴇ, ꜱᴛᴏᴘ, ʜɪᴅᴇ ᴠᴏᴛᴇꜱ ɪɴ ᴏɴᴇ ᴛᴀᴘ\n\n" +
+  "👇 <b>ᴄʜᴏᴏꜱᴇ ᴀɴ ᴀᴄᴛɪᴏɴ:</b>";
 
 var kb = [
   [
-    { title: "🆕 Create Poll", command: "/npMenu" },
-    { title: "📊 My Polls", command: "/myPolls" }
+    { title: "🆕 ᴄʀᴇᴀᴛᴇ ᴘᴏʟʟ", command: "/npMenu" },
+    { title: "📊 ᴍʏ ᴘᴏʟʟꜱ", command: "/myPolls" }
   ],
   [
-    { title: "❓ Help", command: "/helpPage" },
-    { title: "ℹ️ About", command: "/aboutPage" }
+    { title: "❓ ʜᴇʟᴘ", command: "/helpPage" },
+    { title: "ℹ️ ᴀʙᴏᴜᴛ", command: "/aboutPage" }
   ]
 ];
 
@@ -63,8 +63,8 @@ var kb = [
 var np = Bot.getProp("u" + user.id + "_np");
 if (np && np.step && np.step !== "done") {
   kb.unshift([
-    { title: "▶️ Resume Builder", command: "/npMenu" },
-    { title: "✖ Cancel Builder", command: "/npc" }
+    { title: "▶️ ʀᴇꜱᴜᴍᴇ ʙᴜɪʟᴅᴇʀ", command: "/npMenu" },
+    { title: "✖ ᴄᴀɴᴄᴇʟ ʙᴜɪʟᴅᴇʀ", command: "/npc" }
   ]);
 }
 

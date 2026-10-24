@@ -13,14 +13,14 @@ var txt = String(message == null ? "" : message).trim();
 
 function ask() {
   Bot.runCommand("/render", {
-    text: "🏗 <b>Poll Builder</b> — Step 2/5\n\n" +
-      "🗒 Send an optional <b>DESCRIPTION</b> for your poll,\n" +
-      "or tap <b>Skip</b>.\n\n" +
-      "Current title: <b>" + esc(np.title) + "</b>\n\n" +
-      "Max length: 200 characters.",
+    text: "🏗 <b>ᴘᴏʟʟ ʙᴜɪʟᴅᴇʀ</b> — ꜱᴛᴇᴘ 2/5\n\n" +
+      "🗒 ꜱᴇɴᴅ ᴀɴ ᴏᴘᴛɪᴏɴᴀʟ <b>ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ</b> ꜰᴏʀ ʏᴏᴜʀ ᴘᴏʟʟ,\n" +
+      "ᴏʀ ᴛᴀᴘ <b>ꜱᴋɪᴘ</b>.\n\n" +
+      "ᴄᴜʀʀᴇɴᴛ ᴛɪᴛʟᴇ: <b>" + esc(np.title) + "</b>\n\n" +
+      "ᴍᴀx ʟᴇɴɢᴛʜ: 200 ᴄʜᴀʀᴀᴄᴛᴇʀꜱ.",
     kb: [
-      [{ title: "⏭ Skip", command: "/npDesc skip" }],
-      [{ title: "✖ Cancel", command: "/npc" }]
+      [{ title: "⏭ ꜱᴋɪᴘ", command: "/npDesc skip" }],
+      [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]
     ]
   });
 }
@@ -46,8 +46,8 @@ if (txt === "/npc") { return; }
 
 if (txt.length > 200) {
   Bot.runCommand("/render", {
-    text: "⚠️ Description too long (" + txt.length + "/200). Send a shorter one:",
-    kb: [[{ title: "⏭ Skip", command: "/npDesc skip" }], [{ title: "✖ Cancel", command: "/npc" }]]
+    text: "⚠️ ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ ᴛᴏᴏ ʟᴏɴɢ (" + txt.length + "/200). ꜱᴇɴᴅ ᴀ ꜱʜᴏʀᴛᴇʀ ᴏɴᴇ:",
+    kb: [[{ title: "⏭ ꜱᴋɪᴘ", command: "/npDesc skip" }], [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]]
   });
   return;
 }

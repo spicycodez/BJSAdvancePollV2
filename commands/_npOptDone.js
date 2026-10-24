@@ -11,8 +11,8 @@ if (!np || !np.title) { Bot.runCommand("/npMenu"); return; }
 
 if (!np.options || np.options.length < 2) {
   Bot.runCommand("/render", {
-    text: "⚠️ A poll needs at least <b>2 options</b>. Current: " + (np.options ? np.options.length : 0) + ".\nAdd more options first.",
-    kb: [[{ title: "🛒 Back to Cart", command: "/npOpt" }], [{ title: "✖ Cancel", command: "/npc" }]]
+    text: "⚠️ ᴀ ᴘᴏʟʟ ɴᴇᴇᴅꜱ ᴀᴛ ʟᴇᴀꜱᴛ <b>2 ᴏᴘᴛɪᴏɴꜱ</b>. ᴄᴜʀʀᴇɴᴛ: " + (np.options ? np.options.length : 0) + ".\nᴀᴅᴅ ᴍᴏʀᴇ ᴏᴘᴛɪᴏɴꜱ ꜰɪʀꜱᴛ.",
+    kb: [[{ title: "🛒 ʙᴀᴄᴋ ᴛᴏ ᴄᴀʀᴛ", command: "/npOpt" }], [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]]
   });
   return;
 }

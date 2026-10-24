@@ -14,16 +14,16 @@ var txt = String(message == null ? "" : message).trim();
 
 function ask() {
   var attached = np.sponsors.length
-    ? "Attached so far: <b>@" + esc(np.sponsors[0].user) + "</b>\n\n"
+    ? "ᴀᴛᴛᴀᴄʜᴇᴅ ꜱᴏ ꜰᴀʀ: <b>@" + esc(np.sponsors[0].user) + "</b>\n\n"
     : "No sponsor attached yet.\n\n";
   Bot.runCommand("/render", {
-    text: "🏗 <b>Poll Builder</b> — Step 5/5\n🔒 <b>Sponsor Gateway</b> (2 of 2)\n\n" +
+    text: "🏗 <b>ᴘᴏʟʟ ʙᴜɪʟᴅᴇʀ</b> — ꜱᴛᴇᴘ 5/5\n🔒 <b>ꜱᴘᴏɴꜱᴏʀ ɢᴀᴛᴇᴡᴀʏ</b> (2 ᴏꜰ 2)\n\n" +
       attached +
-      "Optionally attach a <b>second sponsor channel</b>\n(<code>@channelname</code>), or tap Skip to finish.",
+      "ᴏᴘᴛɪᴏɴᴀʟʟʏ ᴀᴛᴛᴀᴄʜ ᴀ <b>ꜱᴇᴄᴏɴᴅ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟ</b>\n(<code>@ᴄʜᴀɴɴᴇʟɴᴀᴍᴇ</code>), ᴏʀ ᴛᴀᴘ ꜱᴋɪᴘ ᴛᴏ ꜰɪɴɪꜱʜ.",
     kb: [
-      [{ title: "⏭ Skip", command: "/npSponsor2 skip" }],
-      [{ title: "🔒 Back", command: "/npSponsor" }],
-      [{ title: "✖ Cancel", command: "/npc" }]
+      [{ title: "⏭ ꜱᴋɪᴘ", command: "/npSponsor2 skip" }],
+      [{ title: "🔒 ʙᴀᴄᴋ", command: "/npSponsor" }],
+      [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]
     ]
   });
 }
@@ -50,16 +50,16 @@ var sp2 = txt.replace("https://t.me/", "").replace("t.me/", "").replace(/^@/, ""
 
 if (!/^[A-Za-z0-9_]{4,64}$/.test(sp2)) {
   Bot.runCommand("/render", {
-    text: "⚠️ Sponsor channels must be public — send <code>@channelname</code>:",
-    kb: [[{ title: "⏭ Skip", command: "/npSponsor2 skip" }], [{ title: "✖ Cancel", command: "/npc" }]]
+    text: "⚠️ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟꜱ ᴍᴜꜱᴛ ʙᴇ ᴘᴜʙʟɪᴄ — ꜱᴇɴᴅ <code>@ᴄʜᴀɴɴᴇʟɴᴀᴍᴇ</code>:",
+    kb: [[{ title: "⏭ ꜱᴋɪᴘ", command: "/npSponsor2 skip" }], [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]]
   });
   return;
 }
 
 if (np.sponsors.length && np.sponsors[0].user === sp2) {
   Bot.runCommand("/render", {
-    text: "⚠️ That's the same channel as Sponsor 1. Send a different one, or Skip:",
-    kb: [[{ title: "⏭ Skip", command: "/npSponsor2 skip" }], [{ title: "✖ Cancel", command: "/npc" }]]
+    text: "⚠️ ᴛʜᴀᴛ'ꜱ ᴛʜᴇ ꜱᴀᴍᴇ ᴄʜᴀɴɴᴇʟ ᴀꜱ ꜱᴘᴏɴꜱᴏʀ 1. ꜱᴇɴᴅ ᴀ ᴅɪꜰꜰᴇʀᴇɴᴛ ᴏɴᴇ, ᴏʀ ꜱᴋɪᴘ:",
+    kb: [[{ title: "⏭ ꜱᴋɪᴘ", command: "/npSponsor2 skip" }], [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]]
   });
   return;
 }

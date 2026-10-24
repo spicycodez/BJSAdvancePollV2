@@ -13,15 +13,15 @@ var txt = String(message == null ? "" : message).trim();
 
 function ask() {
   Bot.runCommand("/render", {
-    text: "🏗 <b>Poll Builder</b> — Step 4/5\n\n" +
-      "📣 Send the <b>CHANNEL</b> where the poll should be posted.\n\n" +
-      "Accepts:\n" +
-      "• Public: <code>@yourchannel</code>\n" +
-      "• Private ID: <code>-1001234567890</code>\n\n" +
-      "⚠️ <b>Important:</b> add me as an <b>admin</b> of that channel with the <b>Post Messages</b> permission, or publishing will fail.",
+    text: "🏗 <b>ᴘᴏʟʟ ʙᴜɪʟᴅᴇʀ</b> — ꜱᴛᴇᴘ 4/5\n\n" +
+      "📣 ꜱᴇɴᴅ ᴛʜᴇ <b>ᴄʜᴀɴɴᴇʟ</b> ᴡʜᴇʀᴇ ᴛʜᴇ ᴘᴏʟʟ ꜱʜᴏᴜʟᴅ ʙᴇ ᴘᴏꜱᴛᴇᴅ.\n\n" +
+      "ᴀᴄᴄᴇᴘᴛꜱ:\n" +
+      "• ᴘᴜʙʟɪᴄ: <code>@ʏᴏᴜʀᴄʜᴀɴɴᴇʟ</code>\n" +
+      "• ᴘʀɪᴠᴀᴛᴇ ɪᴅ: <code>-1001234567890</code>\n\n" +
+      "⚠️ <b>ɪᴍᴘᴏʀᴛᴀɴᴛ:</b> ᴀᴅᴅ ᴍᴇ ᴀꜱ ᴀɴ <b>ᴀᴅᴍɪɴ</b> ᴏꜰ ᴛʜᴀᴛ ᴄʜᴀɴɴᴇʟ ᴡɪᴛʜ ᴛʜᴇ <b>ᴘᴏꜱᴛ ᴍᴇꜱꜱᴀɢᴇꜱ</b> ᴘᴇʀᴍɪꜱꜱɪᴏɴ, ᴏʀ ᴘᴜʙʟɪꜱʜɪɴɢ ᴡɪʟʟ ꜰᴀɪʟ.",
     kb: [
-      [{ title: "🛒 Back to Cart", command: "/npOpt" }],
-      [{ title: "✖ Cancel", command: "/npc" }]
+      [{ title: "🛒 ʙᴀᴄᴋ ᴛᴏ ᴄᴀʀᴛ", command: "/npOpt" }],
+      [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]
     ]
   });
 }
@@ -42,8 +42,8 @@ var okId = /^-100\d{6,}$/.test(ch);
 
 if (!okPublic && !okId) {
   Bot.runCommand("/render", {
-    text: "⚠️ That doesn't look like a channel.\n\nSend <code>@channelname</code> or a private channel ID (<code>-100...</code>):",
-    kb: [[{ title: "✖ Cancel", command: "/npc" }]]
+    text: "⚠️ ᴛʜᴀᴛ ᴅᴏᴇꜱɴ'ᴛ ʟᴏᴏᴋ ʟɪᴋᴇ ᴀ ᴄʜᴀɴɴᴇʟ.\n\nꜱᴇɴᴅ <code>@ᴄʜᴀɴɴᴇʟɴᴀᴍᴇ</code> ᴏʀ ᴀ ᴘʀɪᴠᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ɪᴅ (<code>-100...</code>):",
+    kb: [[{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]]
   });
   return;
 }

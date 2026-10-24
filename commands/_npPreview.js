@@ -16,33 +16,33 @@ function esc(s) {
   return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
-var t = "👀 <b>PREVIEW</b>\n━━━━━━━━━━━━━━\n\n";
+var t = "👀 <b>ᴘʀᴇᴠɪᴇᴡ</b>\n━━━━━━━━━━━━━━\n\n";
 t += "📊 <b>" + esc(np.title) + "</b>\n";
 if (np.desc) { t += "<i>" + esc(np.desc) + "</i>\n"; }
 t += "\n";
 for (var i = 0; i < np.options.length; i++) {
   t += "▫▫▫▫▫▫▫▫▫▫ " + (i + 1) + ". <b>" + esc(np.options[i]) + "</b>\n";
 }
-t += "\n👥 Total votes: 0 • 🟢 LIVE\n";
-t += "📣 Posted to: <b>" + esc(np.channel) + "</b>\n";
+t += "\n👥 ᴛᴏᴛᴀʟ ᴠᴏᴛᴇꜱ: 0 • 🟢 ʟɪᴠᴇ\n";
+t += "📣 ᴘᴏꜱᴛᴇᴅ ᴛᴏ: <b>" + esc(np.channel) + "</b>\n";
 if (np.sponsors && np.sponsors.length) {
-  t += "🔒 Sponsors: ";
+  t += "🔒 ꜱᴘᴏɴꜱᴏʀꜱ: ";
   for (var j = 0; j < np.sponsors.length; j++) {
     t += "@" + esc(np.sponsors[j].user) + (j < np.sponsors.length - 1 ? ", " : "");
   }
   t += "\n";
 } else {
-  t += "🔒 Sponsors: none\n";
+  t += "🔒 ꜱᴘᴏɴꜱᴏʀꜱ: ɴᴏɴᴇ\n";
 }
-t += "\n━━━━━━━━━━━━━━\nPublish now?";
+t += "\n━━━━━━━━━━━━━━\nᴘᴜʙʟɪꜱʜ ɴᴏᴡ?";
 
 var kb = [
-  [{ title: "🚀 Publish Poll", command: "/npPublish" }],
+  [{ title: "🚀 ᴘᴜʙʟɪꜱʜ ᴘᴏʟʟ", command: "/npPublish" }],
   [
-    { title: "📣 Channel", command: "/npChannel" },
-    { title: "🔒 Sponsors", command: "/npSponsor" }
+    { title: "📣 ᴄʜᴀɴɴᴇʟ", command: "/npChannel" },
+    { title: "🔒 ꜱᴘᴏɴꜱᴏʀꜱ", command: "/npSponsor" }
   ],
-  [{ title: "✖ Cancel", command: "/npc" }]
+  [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]
 ];
 
 Bot.runCommand("/render", { text: t, kb: kb });

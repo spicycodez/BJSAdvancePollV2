@@ -6,23 +6,23 @@ need_reply: false
 CMD*/
 
 var t =
-  "❓ <b>Help — Advance Poll Bot V2</b>\n\n" +
-  "<b>1.</b> Tap 🆕 <b>Create Poll</b> and follow the step-by-step builder: title → description → options (cart-style, one per message) → posting channel → sponsor channels.\n\n" +
-  "<b>2.</b> The poll is posted to your channel as a single clean message. Users vote with inline buttons — no messy chat.\n\n" +
-  "<b>3.</b> 🔒 <b>Sponsor Gateway:</b> attach up to 2 sponsor channels. Voters must join them before the vote is counted. The bot checks membership automatically.\n\n" +
-  "<b>4.</b> 🛡 <b>Join-Left Protection:</b> votes are re-verified when the voter interacts with the poll and in scheduled background sweeps. If a voter leaves a sponsor channel, their vote is removed.\n\n" +
-  "<b>5.</b> 📊 <b>My Polls:</b> pause ⏸, resume ▶️, stop ⏹, hide/show vote counts 🙈, re-verify all votes 🛡, re-post 📢 or delete 🗑 — all from one inline dashboard.\n\n" +
-  "<b>Requirements:</b>\n" +
-  "• Add the bot as an <b>admin</b> in your posting channel (Post Messages).\n" +
-  "• Add the bot as an <b>admin</b> in sponsor channels (membership checks).\n" +
-  "• Voters should press START on this bot once, so the gateway can DM them.\n\n" +
-  "<b>Commands:</b>\n" +
-  "/start — main menu\n/newpoll — create a poll\n/mypolls — dashboard\n/npc — cancel the builder";
+  "❓ <b>ʜᴇʟᴘ — ᴀᴅᴠᴀɴᴄᴇ ᴘᴏʟʟ ʙᴏᴛ ᴠ2</b>\n\n" +
+  "<b>1.</b> ᴛᴀᴘ 🆕 <b>ᴄʀᴇᴀᴛᴇ ᴘᴏʟʟ</b> ᴀɴᴅ ꜰᴏʟʟᴏᴡ ᴛʜᴇ ꜱᴛᴇᴘ-ʙʏ-ꜱᴛᴇᴘ ʙᴜɪʟᴅᴇʀ: ᴛɪᴛʟᴇ → ᴅᴇꜱᴄʀɪᴘᴛɪᴏɴ → ᴏᴘᴛɪᴏɴꜱ (ᴄᴀʀᴛ-ꜱᴛʏʟᴇ, ᴏɴᴇ ᴘᴇʀ ᴍᴇꜱꜱᴀɢᴇ) → ᴘᴏꜱᴛɪɴɢ ᴄʜᴀɴɴᴇʟ → ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟꜱ.\n\n" +
+  "<b>2.</b> ᴛʜᴇ ᴘᴏʟʟ ɪꜱ ᴘᴏꜱᴛᴇᴅ ᴛᴏ ʏᴏᴜʀ ᴄʜᴀɴɴᴇʟ ᴀꜱ ᴀ ꜱɪɴɢʟᴇ ᴄʟᴇᴀɴ ᴍᴇꜱꜱᴀɢᴇ. ᴜꜱᴇʀꜱ ᴠᴏᴛᴇ ᴡɪᴛʜ ɪɴʟɪɴᴇ ʙᴜᴛᴛᴏɴꜱ — ɴᴏ ᴍᴇꜱꜱʏ ᴄʜᴀᴛ.\n\n" +
+  "<b>3.</b> 🔒 <b>ꜱᴘᴏɴꜱᴏʀ ɢᴀᴛᴇᴡᴀʏ:</b> ᴀᴛᴛᴀᴄʜ ᴜᴘ ᴛᴏ 2 ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟꜱ. ᴠᴏᴛᴇʀꜱ ᴍᴜꜱᴛ ᴊᴏɪɴ ᴛʜᴇᴍ ʙᴇꜰᴏʀᴇ ᴛʜᴇ ᴠᴏᴛᴇ ɪꜱ ᴄᴏᴜɴᴛᴇᴅ. ᴛʜᴇ ʙᴏᴛ ᴄʜᴇᴄᴋꜱ ᴍᴇᴍʙᴇʀꜱʜɪᴘ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ.\n\n" +
+  "<b>4.</b> 🛡 <b>ᴊᴏɪɴ-ʟᴇꜰᴛ ᴘʀᴏᴛᴇᴄᴛɪᴏɴ:</b> ᴠᴏᴛᴇꜱ ᴀʀᴇ ʀᴇ-ᴠᴇʀɪꜰɪᴇᴅ ᴡʜᴇɴ ᴛʜᴇ ᴠᴏᴛᴇʀ ɪɴᴛᴇʀᴀᴄᴛꜱ ᴡɪᴛʜ ᴛʜᴇ ᴘᴏʟʟ ᴀɴᴅ ɪɴ ꜱᴄʜᴇᴅᴜʟᴇᴅ ʙᴀᴄᴋɢʀᴏᴜɴᴅ ꜱᴡᴇᴇᴘꜱ. ɪꜰ ᴀ ᴠᴏᴛᴇʀ ʟᴇᴀᴠᴇꜱ ᴀ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟ, ᴛʜᴇɪʀ ᴠᴏᴛᴇ ɪꜱ ʀᴇᴍᴏᴠᴇᴅ.\n\n" +
+  "<b>5.</b> 📊 <b>ᴍʏ ᴘᴏʟʟꜱ:</b> ᴘᴀᴜꜱᴇ ⏸, ʀᴇꜱᴜᴍᴇ ▶️, ꜱᴛᴏᴘ ⏹, ʜɪᴅᴇ/ꜱʜᴏᴡ ᴠᴏᴛᴇ ᴄᴏᴜɴᴛꜱ 🙈, ʀᴇ-ᴠᴇʀɪꜰʏ ᴀʟʟ ᴠᴏᴛᴇꜱ 🛡, ʀᴇ-ᴘᴏꜱᴛ 📢 ᴏʀ ᴅᴇʟᴇᴛᴇ 🗑 — ᴀʟʟ ꜰʀᴏᴍ ᴏɴᴇ ɪɴʟɪɴᴇ ᴅᴀꜱʜʙᴏᴀʀᴅ.\n\n" +
+  "<b>ʀᴇǫᴜɪʀᴇᴍᴇɴᴛꜱ:</b>\n" +
+  "• ᴀᴅᴅ ᴛʜᴇ ʙᴏᴛ ᴀꜱ ᴀɴ <b>ᴀᴅᴍɪɴ</b> ɪɴ ʏᴏᴜʀ ᴘᴏꜱᴛɪɴɢ ᴄʜᴀɴɴᴇʟ (ᴘᴏꜱᴛ ᴍᴇꜱꜱᴀɢᴇꜱ).\n" +
+  "• ᴀᴅᴅ ᴛʜᴇ ʙᴏᴛ ᴀꜱ ᴀɴ <b>ᴀᴅᴍɪɴ</b> ɪɴ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟꜱ (ᴍᴇᴍʙᴇʀꜱʜɪᴘ ᴄʜᴇᴄᴋꜱ).\n" +
+  "• ᴠᴏᴛᴇʀꜱ ꜱʜᴏᴜʟᴅ ᴘʀᴇꜱꜱ ꜱᴛᴀʀᴛ ᴏɴ ᴛʜɪꜱ ʙᴏᴛ ᴏɴᴄᴇ, ꜱᴏ ᴛʜᴇ ɢᴀᴛᴇᴡᴀʏ ᴄᴀɴ ᴅᴍ ᴛʜᴇᴍ.\n\n" +
+  "<b>ᴄᴏᴍᴍᴀɴᴅꜱ:</b>\n" +
+  "/ꜱᴛᴀʀᴛ — ᴍᴀɪɴ ᴍᴇɴᴜ\n/ɴᴇᴡᴘᴏʟʟ — ᴄʀᴇᴀᴛᴇ ᴀ ᴘᴏʟʟ\n/ᴍʏᴘᴏʟʟꜱ — ᴅᴀꜱʜʙᴏᴀʀᴅ\n/ɴᴘᴄ — ᴄᴀɴᴄᴇʟ ᴛʜᴇ ʙᴜɪʟᴅᴇʀ";
 
 var kb = [
-  [{ title: "🆕 Create Poll", command: "/npMenu" }],
+  [{ title: "🆕 ᴄʀᴇᴀᴛᴇ ᴘᴏʟʟ", command: "/npMenu" }],
   [
-    { title: "🏠 Main Menu", command: "/start" }
+    { title: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ", command: "/start" }
   ]
 ];
 

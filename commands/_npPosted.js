@@ -42,13 +42,13 @@ if (gIndex.indexOf(pollId) < 0) {
 Bot.deleteProp("u" + poll.owner_bbid + "_np");
 
 Bot.runCommand("/render", {
-  text: "🎉 <b>POLL IS LIVE!</b>\n\n📊 <b>" + esc(poll.title) + "</b>\n📣 Posted to <b>" + esc(poll.channel_title || poll.channel) + "</b>\n" +
-    (poll.sponsors.length ? "🔒 Sponsor gateway: " + poll.sponsors.length + " channel(s)\n" : "") +
-    "\nManage it from your dashboard 👇",
+  text: "🎉 <b>ᴘᴏʟʟ ɪꜱ ʟɪᴠᴇ!</b>\n\n📊 <b>" + esc(poll.title) + "</b>\n📣 ᴘᴏꜱᴛᴇᴅ ᴛᴏ <b>" + esc(poll.channel_title || poll.channel) + "</b>\n" +
+    (poll.sponsors.length ? "🔒 ꜱᴘᴏɴꜱᴏʀ ɢᴀᴛᴇᴡᴀʏ: " + poll.sponsors.length + " ᴄʜᴀɴɴᴇʟ(ꜱ)\n" : "") +
+    "\nᴍᴀɴᴀɢᴇ ɪᴛ ꜰʀᴏᴍ ʏᴏᴜʀ ᴅᴀꜱʜʙᴏᴀʀᴅ 👇",
   kb: [
-    [{ title: "📊 Open Dashboard", command: "/pollAdmin " + pollId }],
-    [{ title: "🆕 Another Poll", command: "/npMenu" }],
-    [{ title: "🏠 Main Menu", command: "/start" }]
+    [{ title: "📊 ᴏᴘᴇɴ ᴅᴀꜱʜʙᴏᴀʀᴅ", command: "/pollAdmin " + pollId }],
+    [{ title: "🆕 ᴀɴᴏᴛʜᴇʀ ᴘᴏʟʟ", command: "/npMenu" }],
+    [{ title: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ", command: "/start" }]
   ]
 });
 

@@ -5,23 +5,23 @@ need_reply: false
 CMD*/
 
 var bb = options.bb_options || {};
-var err = String(options.error || "unknown error");
+var err = String(options.error || "ᴜɴᴋɴᴏᴡɴ ᴇʀʀᴏʀ");
 
 if (err.indexOf("message is not modified") >= 0) { return; }
 
 var detail = err.slice(0, 160);
-var hint = "Most common fixes:\n" +
-  "1️⃣ Add me as an <b>admin</b> of the channel with <b>Post Messages</b> permission.\n" +
-  "2️⃣ Check the channel username is correct.\n" +
-  "3️⃣ For sponsor channels: add me as admin too (membership checks).\n\n" +
-  "Then tap <b>Retry</b>.";
+var hint = "ᴍᴏꜱᴛ ᴄᴏᴍᴍᴏɴ ꜰɪxᴇꜱ:\n" +
+  "1️⃣ ᴀᴅᴅ ᴍᴇ ᴀꜱ ᴀɴ <b>ᴀᴅᴍɪɴ</b> ᴏꜰ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴡɪᴛʜ <b>ᴘᴏꜱᴛ ᴍᴇꜱꜱᴀɢᴇꜱ</b> ᴘᴇʀᴍɪꜱꜱɪᴏɴ.\n" +
+  "2️⃣ ᴄʜᴇᴄᴋ ᴛʜᴇ ᴄʜᴀɴɴᴇʟ ᴜꜱᴇʀɴᴀᴍᴇ ɪꜱ ᴄᴏʀʀᴇᴄᴛ.\n" +
+  "3️⃣ ꜰᴏʀ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟꜱ: ᴀᴅᴅ ᴍᴇ ᴀꜱ ᴀᴅᴍɪɴ ᴛᴏᴏ (ᴍᴇᴍʙᴇʀꜱʜɪᴘ ᴄʜᴇᴄᴋꜱ).\n\n" +
+  "ᴛʜᴇɴ ᴛᴀᴘ <b>ʀᴇᴛʀʏ</b>.";
 
 Bot.runCommand("/render", {
-  text: "❌ <b>Couldn't publish the poll</b>\n\n" +
+  text: "❌ <b>ᴄᴏᴜʟᴅɴ'ᴛ ᴘᴜʙʟɪꜱʜ ᴛʜᴇ ᴘᴏʟʟ</b>\n\n" +
     "<i>" + esc(detail) + "</i>\n\n" + hint,
   kb: [
-    [{ title: "🚀 Retry", command: "/npPublish" }],
-    [{ title: "✖ Cancel", command: "/npc" }]
+    [{ title: "🚀 ʀᴇᴛʀʏ", command: "/npPublish" }],
+    [{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]
   ]
 });
 

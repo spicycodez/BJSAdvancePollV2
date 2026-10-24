@@ -25,10 +25,10 @@ if (live.length !== arr.length) {
 
 if (!live.length) {
   Bot.runCommand("/render", {
-    text: "📊 <b>History Dashboard</b>\n\nYou have no polls yet.\nCreate your first one — it takes about a minute! 🚀",
+    text: "📊 <b>ʜɪꜱᴛᴏʀʏ ᴅᴀꜱʜʙᴏᴀʀᴅ</b>\n\nʏᴏᴜ ʜᴀᴠᴇ ɴᴏ ᴘᴏʟʟꜱ ʏᴇᴛ.\nᴄʀᴇᴀᴛᴇ ʏᴏᴜʀ ꜰɪʀꜱᴛ ᴏɴᴇ — ɪᴛ ᴛᴀᴋᴇꜱ ᴀʙᴏᴜᴛ ᴀ ᴍɪɴᴜᴛᴇ! 🚀",
     kb: [
-      [{ title: "🆕 Create Poll", command: "/npMenu" }],
-      [{ title: "🏠 Main Menu", command: "/start" }]
+      [{ title: "🆕 ᴄʀᴇᴀᴛᴇ ᴘᴏʟʟ", command: "/npMenu" }],
+      [{ title: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ", command: "/start" }]
     ]
   });
   return;
@@ -43,9 +43,9 @@ if (page > pages) { page = pages; }
 var start = (page - 1) * PER;
 var slice = live.slice(start, start + PER);
 
-var t = "📊 <b>History Dashboard</b>\n\n" +
-  "You have <b>" + live.length + "</b> poll(s) — page " + page + "/" + pages + "\n\n" +
-  "Tap a poll to manage it: ⏸ pause • ▶️ resume • ⏹ stop • 🙈 hide votes • 🛡 re-verify • 🗑 delete.";
+var t = "📊 <b>ʜɪꜱᴛᴏʀʏ ᴅᴀꜱʜʙᴏᴀʀᴅ</b>\n\n" +
+  "ʏᴏᴜ ʜᴀᴠᴇ <b>" + live.length + "</b> ᴘᴏʟʟ(ꜱ) — ᴘᴀɢᴇ " + page + "/" + pages + "\n\n" +
+  "ᴛᴀᴘ ᴀ ᴘᴏʟʟ ᴛᴏ ᴍᴀɴᴀɢᴇ ɪᴛ: ⏸ ᴘᴀᴜꜱᴇ • ▶️ ʀᴇꜱᴜᴍᴇ • ⏹ ꜱᴛᴏᴘ • 🙈 ʜɪᴅᴇ ᴠᴏᴛᴇꜱ • 🛡 ʀᴇ-ᴠᴇʀɪꜰʏ • 🗑 ᴅᴇʟᴇᴛᴇ.";
 
 var kb = [];
 for (var j = 0; j < slice.length; j++) {
@@ -60,13 +60,13 @@ for (var j = 0; j < slice.length; j++) {
 }
 
 var nav = [];
-if (page > 1) { nav.push({ title: "⬅️ Prev", command: "/myPolls " + (page - 1) }); }
-if (page < pages) { nav.push({ title: "Next ➡️", command: "/myPolls " + (page + 1) }); }
+if (page > 1) { nav.push({ title: "⬅️ ᴘʀᴇᴠ", command: "/myPolls " + (page - 1) }); }
+if (page < pages) { nav.push({ title: "ɴᴇxᴛ ➡️", command: "/myPolls " + (page + 1) }); }
 if (nav.length) { kb.push(nav); }
 
 kb.push([
-  { title: "🆕 Create Poll", command: "/npMenu" },
-  { title: "🏠 Main Menu", command: "/start" }
+  { title: "🆕 ᴄʀᴇᴀᴛᴇ ᴘᴏʟʟ", command: "/npMenu" },
+  { title: "🏠 ᴍᴀɪɴ ᴍᴇɴᴜ", command: "/start" }
 ]);
 
 Bot.runCommand("/render", { text: t, kb: kb });

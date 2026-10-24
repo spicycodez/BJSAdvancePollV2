@@ -65,34 +65,34 @@ if (bb.mode === "refresh") {
     poll.stats.removed = (poll.stats.removed || 0) + 1;
     Bot.setProp({ name: "poll_" + bb.pollId, value: poll, type: "json" });
     Bot.runCommand("/pollRender", { pollId: bb.pollId });
-    pop("🚪 Your vote was removed — you left the sponsor channel(s).", true);
+    pop("🚪 ʏᴏᴜʀ ᴠᴏᴛᴇ ᴡᴀꜱ ʀᴇᴍᴏᴠᴇᴅ — ʏᴏᴜ ʟᴇꜰᴛ ᴛʜᴇ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟ(ꜱ).", true);
   } else {
-    pop("🔒 Join the sponsor channel(s) to vote!", true);
+    pop("🔒 ᴊᴏɪɴ ᴛʜᴇ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟ(ꜱ) ᴛᴏ ᴠᴏᴛᴇ!", true);
   }
   return;
 }
 
 // ─── mode "vote": Sponsor Gateway — popup + private DM with join buttons ───
-pop("🔒 Join the sponsor channel(s) first!", true);
+pop("🔒 ᴊᴏɪɴ ᴛʜᴇ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟ(ꜱ) ꜰɪʀꜱᴛ!", true);
 
 var rows = [];
 for (var s = 0; s < poll.sponsors.length; s++) {
   var sp = poll.sponsors[s];
   if (sp.user) {
-    rows.push([{ text: "📢 Join " + (sp.title || sp.user), url: "https://t.me/" + sp.user }]);
+    rows.push([{ text: "📢 ᴊᴏɪɴ " + (sp.title || sp.user), url: "https://t.me/" + sp.user }]);
   }
 }
-rows.push([{ text: "✅ I Joined — Check Again", callback_data: "/vote " + bb.pollId + " " + bb.optIdx }]);
+rows.push([{ text: "✅ ɪ ᴊᴏɪɴᴇᴅ — ᴄʜᴇᴄᴋ ᴀɢᴀɪɴ", callback_data: "/vote " + bb.pollId + " " + bb.optIdx }]);
 
-var optName = poll.options[bb.optIdx] ? poll.options[bb.optIdx] : "your choice";
+var optName = poll.options[bb.optIdx] ? poll.options[bb.optIdx] : "ʏᴏᴜʀ ᴄʜᴏɪᴄᴇ";
 
 Api.sendMessage({
   chat_id: bb.tgid,
-  text: "🔒 <b>Vote locked!</b>\n\n" +
-    "Your vote for <b>" + esc(optName) + "</b> in <b>" + esc(poll.title) + "</b> will be counted after you join our sponsor channel(s).\n\n" +
-    "1️⃣ Join via the button(s) below\n" +
-    "2️⃣ Tap <b>“I Joined — Check Again”</b>\n\n" +
-    "<i>Your vote is safe — it will count the moment you pass the gateway.</i>",
+  text: "🔒 <b>ᴠᴏᴛᴇ ʟᴏᴄᴋᴇᴅ!</b>\n\n" +
+    "ʏᴏᴜʀ ᴠᴏᴛᴇ ꜰᴏʀ <b>" + esc(optName) + "</b> ɪɴ <b>" + esc(poll.title) + "</b> ᴡɪʟʟ ʙᴇ ᴄᴏᴜɴᴛᴇᴅ ᴀꜰᴛᴇʀ ʏᴏᴜ ᴊᴏɪɴ ᴏᴜʀ ꜱᴘᴏɴꜱᴏʀ ᴄʜᴀɴɴᴇʟ(ꜱ).\n\n" +
+    "1️⃣ ᴊᴏɪɴ ᴠɪᴀ ᴛʜᴇ ʙᴜᴛᴛᴏɴ(ꜱ) ʙᴇʟᴏᴡ\n" +
+    "2️⃣ ᴛᴀᴘ <b>“ɪ ᴊᴏɪɴᴇᴅ — ᴄʜᴇᴄᴋ ᴀɢᴀɪɴ”</b>\n\n" +
+    "<i>ʏᴏᴜʀ ᴠᴏᴛᴇ ɪꜱ ꜱᴀꜰᴇ — ɪᴛ ᴡɪʟʟ ᴄᴏᴜɴᴛ ᴛʜᴇ ᴍᴏᴍᴇɴᴛ ʏᴏᴜ ᴘᴀꜱꜱ ᴛʜᴇ ɢᴀᴛᴇᴡᴀʏ.</i>",
   parse_mode: "HTML",
   reply_markup: { inline_keyboard: rows },
   link_preview_options: { is_disabled: true },

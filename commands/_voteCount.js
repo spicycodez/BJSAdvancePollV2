@@ -13,7 +13,7 @@ if (poll.status === "paused") {
     if (request && request.id) {
       Api.call("answerCallbackQuery", {
         callback_query_id: request.id,
-        text: "⏸ Voting is paused right now.",
+        text: "⏸ ᴠᴏᴛɪɴɢ ɪꜱ ᴘᴀᴜꜱᴇᴅ ʀɪɢʜᴛ ɴᴏᴡ.",
         show_alert: true,
         on_error: "/ignoreErr"
       });
@@ -41,7 +41,7 @@ try {
     Api.call("answerCallbackQuery", {
       callback_query_id: request.id,
       text: prev === undefined
-        ? "✅ Vote counted: " + String(poll.options[optIdx]).slice(0, 60)
+        ? "✅ ᴠᴏᴛᴇ ᴄᴏᴜɴᴛᴇᴅ: " + String(poll.options[optIdx]).slice(0, 60)
         : "🔄 Vote updated: " + String(poll.options[optIdx]).slice(0, 60),
       show_alert: false,
       on_error: "/ignoreErr"

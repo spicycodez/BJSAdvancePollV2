@@ -37,8 +37,8 @@ var poll = {
 Bot.setProp({ name: "poll_" + id, value: poll, type: "json" });
 
 Bot.runCommand("/render", {
-  text: "⏳ <b>Publishing…</b>\n\nResolving channels and checking access. This takes a few seconds.",
-  kb: [[{ title: "✖ Cancel", command: "/npc" }]]
+  text: "⏳ <b>ᴘᴜʙʟɪꜱʜɪɴɢ…</b>\n\nʀᴇꜱᴏʟᴠɪɴɢ ᴄʜᴀɴɴᴇʟꜱ ᴀɴᴅ ᴄʜᴇᴄᴋɪɴɢ ᴀᴄᴄᴇꜱꜱ. ᴛʜɪꜱ ᴛᴀᴋᴇꜱ ᴀ ꜰᴇᴡ ꜱᴇᴄᴏɴᴅꜱ.",
+  kb: [[{ title: "✖ ᴄᴀɴᴄᴇʟ", command: "/npc" }]]
 });
 
 Bot.runCommand("/npResolve", { pollId: id, i: 0 });
